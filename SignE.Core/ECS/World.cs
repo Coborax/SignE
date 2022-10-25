@@ -5,23 +5,33 @@ namespace SignE.Core.ECS
 {
     public class World
     {
-        private List<Entity> _entities = new List<Entity>();
-        private List<GameSystem> _systems = new List<GameSystem>();
+        public List<Entity> Entities { get; private set; } = new List<Entity>();
+        private List<IGameSystem> _systems = new List<IGameSystem>();
 
         public void AddEntity(Entity entity)
         {
-            _entities.Add(entity);
+            Entities.Add(entity);
         }
 
-        public void RegisterSystem(GameSystem gameSystem)
-        {
-            _systems.Add(gameSystem);
+        public void RegisterSystem(IGameSystem gameSystem)
+        { 
+            _systems.Add(gameSystem);  
         }
 
-
-        public List<ComponentPairs> GetComponentPairs(List<Type> componentTypes)
+        public void UpdateSystems()
         {
-            throw new NotImplementedException();
+            foreach (var gameSystem in _systems)
+            {
+                gameSystem.UpdateSystem(this);
+            }
+        }
+
+        public void DrawSystems()
+        {
+            foreach (var gameSystem in _systems)
+            {
+                gameSystem.DrawSystem(this);
+            }
         }
     }
 }
