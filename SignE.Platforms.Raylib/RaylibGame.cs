@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using SignE.Core;
 using Raylib_cs;
 using SignE.Core.ECS;
@@ -32,7 +33,11 @@ namespace SignE.Platforms.RayLib
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RAYWHITE);
 
+                Raylib.BeginMode2D(((RaylibCamera2D)Core.SignE.Graphics.Camera2D).Camera2D);
+                
                 World.DrawSystems();
+                
+                Raylib.EndMode2D();
                 
                 Raylib.DrawFPS(10, 10);
 

@@ -22,16 +22,11 @@ namespace SignE.ExampleGame
             entity.AddComponent(new Movement2DComponent());
             world.AddEntity(entity);
 
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    entity = new Entity();
-                    entity.AddComponent(new Position2DComponent(10 + 300 * i, 10 + + 300 * j));
-                    entity.AddComponent(new SpriteComponent("Resources/torben.png"));
-                    world.AddEntity(entity);   
-                }
-            }
+            entity = new Entity();
+            entity.AddComponent(new Position2DComponent(1280/2, 720/2));
+            entity.AddComponent(new SpriteComponent("Resources/rpg-pack/atlas.png"));
+            entity.AddComponent(new Movement2DComponent());
+            world.AddEntity(entity);
 
             world.RegisterSystem(new DrawGameSystem());
             world.RegisterSystem(new Movement2DSystem());
