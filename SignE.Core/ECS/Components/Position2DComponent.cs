@@ -7,8 +7,8 @@
             this.X = x;
             this.Y = y;
         }
-        
-        public float X { get; set; }
+
         public float Y { get; set; }
+        public float X { get; set; }
     }
 }

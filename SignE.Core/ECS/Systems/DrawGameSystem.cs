@@ -15,6 +15,7 @@ namespace SignE.Core.ECS.Systems
         {
             DrawCircles(world);
             DrawSquares(world);
+            DrawSprites(world);
         }
 
         private void DrawSquares(World world)
@@ -45,6 +46,34 @@ namespace SignE.Core.ECS.Systems
                 var r = entity.GetComponent<CircleComponent>().Radius;
                 SignE.Graphics.DrawCircle(pos.X, pos.Y, r);
             }
+        }
+
+        private void DrawSprites(World world)
+        {
+            var entities = world.Entities
+                .WithComponent<Position2DComponent>()
+                .WithComponent<SpriteComponent>()
+                .ToList();
+
+            entities.Sort(CompareBySpriteDepth);
+            
+            foreach (var entity in entities)
+            {
+                var pos = entity.GetComponent<Position2DComponent>();
+                var sprite = entity.GetComponent<SpriteComponent>().Sprite;
+                SignE.Graphics.DrawSprite(sprite, pos.X, pos.Y);
+            }
+        }
+
+        private static int CompareBySpriteDepth(Entity a, Entity b)
+        {
+            if (!a.HasComponent<SpriteComponent>() || !b.HasComponent<SpriteComponent>()) return 0;
+            
+            var aSprite = a.GetComponent<SpriteComponent>();
+            var bSprite = b.GetComponent<SpriteComponent>();
+
+            return aSprite.Depth.CompareTo(bSprite.Depth);
+
         }
     }   
 }

@@ -8,14 +8,13 @@ namespace SignE.Core
     {
         protected World World;
         
-        public void Run(int w, int h, string title, World world)
+        public void Run()
         {
-            Init(w, h, title, world);
             Loop();
             Dispose();
         }
 
-        protected virtual void Init(int w, int h, string title, World world)
+        public virtual void Init(int w, int h, string title, World world)
         {
             World = world;
         }

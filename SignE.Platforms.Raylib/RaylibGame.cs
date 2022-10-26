@@ -9,11 +9,15 @@ namespace SignE.Platforms.RayLib
 {
     public class RaylibGame : Game
     {
-        protected override void Init(int w, int h, string title, World world)
+        public RaylibGame()
         {
-            base.Init(w, h, title, world);
             Core.SignE.Graphics = new RaylibGraphics();
             Core.SignE.Input = new RaylibInput();
+        }
+        
+        public override void Init(int w, int h, string title, World world)
+        {
+            base.Init(w, h, title, world);
             
             Raylib.InitWindow(w, h, title);
             Raylib.SetTargetFPS(60);
