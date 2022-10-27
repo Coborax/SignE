@@ -80,8 +80,6 @@ namespace SignE.Core.ECS.Systems
 
         private static int CompareBySpriteDepth(Entity a, Entity b)
         {
-            if (!a.HasComponent<SpriteComponent>() || !b.HasComponent<SpriteComponent>()) return 0;
-            
             var aSprite = a.GetComponent<SpriteComponent>();
             var bSprite = b.GetComponent<SpriteComponent>();
 

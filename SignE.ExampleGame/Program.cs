@@ -4,6 +4,8 @@ using SignE.Core.ECS;
 using SignE.Core.ECS.Components;
 using SignE.Core.ECS.Systems;
 using SignE.Core.Levels;
+using SignE.ExampleGame.ECS.Components;
+using SignE.ExampleGame.ECS.Systems;
 using SignE.Platforms.RayLib;
 
 namespace SignE.ExampleGame
@@ -34,15 +36,26 @@ namespace SignE.ExampleGame
             World = new World();
             
             Entity entity = new Entity();
-            entity.AddComponent(new Position2DComponent(0, 0));
+            var playerPos = new Position2DComponent(0, 0);
+            
+            // Player
+            entity.AddComponent(playerPos);
             entity.AddComponent(new SpriteComponent("Resources/rpg-pack/chars/gabe/gabe-idle-run.png", 24, 24));
             entity.AddComponent(new Movement2DComponent());
             entity.AddComponent(new YSortComponent());
             World.AddEntity(entity);
 
-            for (int i = 0; i < 20; i++)
+            // Camera
+            entity = new Entity();
+            entity.AddComponent(new Position2DComponent(10, 10));
+            entity.AddComponent(new Camera2DComponent());
+            entity.AddComponent(new SmoothFollowComponent(playerPos, 0.05f));
+            World.AddEntity(entity);
+
+            // Tiles
+            for (int i = 0; i < 100; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 100; j++)
                 {
                     entity = new Entity();
                     var sprite = new SpriteComponent("Resources/rpg-pack/atlas.png", 16, 16, -100);
@@ -55,12 +68,11 @@ namespace SignE.ExampleGame
                 }
             }
             
-            
-
             World.RegisterSystem(new Draw2DSystem());
             World.RegisterSystem(new Movement2DSystem());
             World.RegisterSystem(new YSortSystem());
             World.RegisterSystem(new Camera2DSystem());
+            World.RegisterSystem(new SmoothFollowSystem());
         }
     }
 }

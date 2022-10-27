@@ -28,6 +28,9 @@ namespace SignE.Platforms.RayLib.Graphics
             set => Camera2D.zoom = value;
         }
 
+        public float Width => Raylib.GetScreenWidth() / Zoom;
+        public float Height => Raylib.GetScreenHeight() / Zoom;
+
         public Entity Target { get; set; }
 
         public void SetOffsetCenter(float x, float y)

@@ -7,6 +7,9 @@ namespace SignE.Core.Graphics
         public float X { get; set; }
         public float Y { get; set; }
         public float Zoom { get; set; }
+
+        public float Width { get; }
+        public float Height { get; }
         
         public Entity Target { get; set; }
     }   
