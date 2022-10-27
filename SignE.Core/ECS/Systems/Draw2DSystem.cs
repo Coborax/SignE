@@ -1,32 +1,51 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SignE.Core.ECS.Components;
 using SignE.Core.Extensions;
 using SignE.Core.Input;
 
 namespace SignE.Core.ECS.Systems
 {
-    public class Draw2DSystem : IGameSystem
+    public class Draw2DSystem : GameSystem
     {
-        public void UpdateSystem(World world)
+        
+        private List<Entity> _rectangles;
+        private List<Entity> _circles;
+        private List<Entity> _sprites;
+        
+        public override void UpdateSystem()
         {
             
         }
 
-        public void DrawSystem(World world)
+        public override void DrawSystem()
         {
-            DrawCircles(world);
-            DrawSquares(world);
-            DrawSprites(world);
+            DrawCircles();
+            DrawSquares();
+            DrawSprites();
         }
 
-        private void DrawSquares(World world)
+        public override void GetEntities(World world)
         {
-            var entities = world.Entities
+            _rectangles = world.Entities
                 .WithComponent<Position2DComponent>()
                 .WithComponent<RectangleComponent>()
                 .ToList();
             
-            foreach (var entity in entities)
+            _circles = world.Entities
+                .WithComponent<Position2DComponent>()
+                .WithComponent<CircleComponent>()
+                .ToList();
+            
+            _sprites = world.Entities
+                .WithComponent<Position2DComponent>()
+                .WithComponent<SpriteComponent>()
+                .ToList();
+        }
+
+        private void DrawSquares()
+        {
+            foreach (var entity in _rectangles)
             {
                 var pos = entity.GetComponent<Position2DComponent>();
                 var square = entity.GetComponent<RectangleComponent>();
@@ -34,14 +53,9 @@ namespace SignE.Core.ECS.Systems
             }
         }
 
-        private void DrawCircles(World world)
+        private void DrawCircles()
         {
-            var entities = world.Entities
-                .WithComponent<Position2DComponent>()
-                .WithComponent<CircleComponent>()
-                .ToList();
-            
-            foreach (var entity in entities)
+            foreach (var entity in _circles)
             {
                 var pos = entity.GetComponent<Position2DComponent>();
                 var r = entity.GetComponent<CircleComponent>().Radius;
@@ -49,16 +63,10 @@ namespace SignE.Core.ECS.Systems
             }
         }
 
-        private void DrawSprites(World world)
+        private void DrawSprites()
         {
-            var entities = world.Entities
-                .WithComponent<Position2DComponent>()
-                .WithComponent<SpriteComponent>()
-                .ToList();
-
-            entities.Sort(CompareBySpriteDepth);
-            
-            foreach (var entity in entities)
+            _sprites.Sort(CompareBySpriteDepth);
+            foreach (var entity in _sprites)
             {
                 var pos = entity.GetComponent<Position2DComponent>();
                 var sprite = entity.GetComponent<SpriteComponent>();
@@ -78,7 +86,6 @@ namespace SignE.Core.ECS.Systems
             var bSprite = b.GetComponent<SpriteComponent>();
 
             return aSprite.Depth.CompareTo(bSprite.Depth);
-
         }
     }   
 }

@@ -6,23 +6,28 @@ namespace SignE.Core.ECS
     public class World
     {
         public List<Entity> Entities { get; private set; } = new List<Entity>();
-        private List<IGameSystem> _systems = new List<IGameSystem>();
+        private List<GameSystem> _systems = new List<GameSystem>();
 
         public void AddEntity(Entity entity)
         {
             Entities.Add(entity);
+            foreach (var system in _systems)
+            {
+                system.GetEntities(this);
+            }
         }
 
-        public void RegisterSystem(IGameSystem gameSystem)
+        public void RegisterSystem(GameSystem gameSystem)
         { 
-            _systems.Add(gameSystem);  
+            gameSystem.GetEntities(this);
+            _systems.Add(gameSystem);
         }
 
         public void UpdateSystems()
         {
             foreach (var gameSystem in _systems)
             {
-                gameSystem.UpdateSystem(this);
+                gameSystem.UpdateSystem();
             }
         }
 
@@ -30,7 +35,7 @@ namespace SignE.Core.ECS
         {
             foreach (var gameSystem in _systems)
             {
-                gameSystem.DrawSystem(this);
+                gameSystem.DrawSystem();
             }
         }
     }

@@ -5,16 +5,11 @@ using SignE.Core.Input;
 
 namespace SignE.Core.ECS.Systems
 {
-    public class Movement2DSystem : IGameSystem
+    public class Movement2DSystem : GameSystem
     {
-        public void UpdateSystem(World world)
+        public override void UpdateSystem()
         {
-            var entities = world.Entities
-                .WithComponent<Position2DComponent>()
-                .WithComponent<Movement2DComponent>()
-                .ToList();
-
-            foreach (var entity in entities)
+            foreach (var entity in Entities)
             {
                 var pos = entity.GetComponent<Position2DComponent>();
                 var speed = entity.GetComponent<Movement2DComponent>().Speed;
@@ -34,9 +29,17 @@ namespace SignE.Core.ECS.Systems
             }
         }
 
-        public void DrawSystem(World world)
+        public override void DrawSystem()
         {
             
+        }
+
+        public override void GetEntities(World world)
+        {
+            Entities = world.Entities
+                .WithComponent<Position2DComponent>()
+                .WithComponent<Movement2DComponent>()
+                .ToList();
         }
     }
 }
