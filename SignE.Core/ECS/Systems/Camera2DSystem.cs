@@ -13,12 +13,12 @@ namespace SignE.Core.ECS.Systems
                 .WithComponent<Position2DComponent>()
                 .ToList();
 
-            if (entities.Count == 1)
-            {
-                var pos = entities[0].GetComponent<Position2DComponent>();
-                SignE.Graphics.Camera2D.X = pos.X;
-                SignE.Graphics.Camera2D.Y = pos.Y;
-            }
+            if (entities.Count != 1) return;
+            
+            var pos = entities[0].GetComponent<Position2DComponent>();
+            
+            SignE.Graphics.Camera2D.X = pos.X;
+            SignE.Graphics.Camera2D.Y = pos.Y;
         }
 
         public void DrawSystem(World world)

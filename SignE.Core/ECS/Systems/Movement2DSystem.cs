@@ -20,16 +20,16 @@ namespace SignE.Core.ECS.Systems
                 var speed = entity.GetComponent<Movement2DComponent>().Speed;
                 
                 if (SignE.Input.IsKeyDown(Key.W))
-                    pos.Y -= speed;
+                    pos.Y -= speed * SignE.Graphics.DeltaTime;
                 
                 if (SignE.Input.IsKeyDown(Key.S))
-                    pos.Y += speed;
+                    pos.Y += speed * SignE.Graphics.DeltaTime;
                 
                 if (SignE.Input.IsKeyDown(Key.D))
-                    pos.X += speed;
+                    pos.X += speed * SignE.Graphics.DeltaTime;
                 
                 if (SignE.Input.IsKeyDown(Key.A))
-                    pos.X -= speed;
+                    pos.X -= speed * SignE.Graphics.DeltaTime;
 
             }
         }

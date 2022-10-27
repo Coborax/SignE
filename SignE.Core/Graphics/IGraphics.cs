@@ -6,6 +6,7 @@ namespace SignE.Core.Graphics
     {
         public ICamera2D Camera2D { get; set; }
         public bool DebugDraw { get; set; }
+        public float DeltaTime { get; }
         
         // Primitive Shapes
         void DrawCircle(float x, float y, float r);

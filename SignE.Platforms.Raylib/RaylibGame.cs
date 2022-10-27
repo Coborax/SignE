@@ -21,7 +21,7 @@ namespace SignE.Platforms.RayLib
             base.Init(w, h, title, world);
             
             Raylib.InitWindow(w, h, title);
-            Raylib.SetTargetFPS(60);
+            //Raylib.SetTargetFPS(60);
             
             ((RaylibCamera2D)Core.SignE.Graphics.Camera2D).SetOffsetCenter(w / 2, h / 2);
         }
@@ -31,6 +31,7 @@ namespace SignE.Platforms.RayLib
             while (!Raylib.WindowShouldClose())
             {
                 World.UpdateSystems();
+                Core.SignE.LevelManager.CurrentLevel.World.UpdateSystems();
                 
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RAYWHITE);
@@ -38,6 +39,7 @@ namespace SignE.Platforms.RayLib
                 Raylib.BeginMode2D(((RaylibCamera2D)Core.SignE.Graphics.Camera2D).Camera2D);
                 
                 World.DrawSystems();
+                Core.SignE.LevelManager.CurrentLevel.World.DrawSystems();
                 
                 Raylib.EndMode2D();
                 

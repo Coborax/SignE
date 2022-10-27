@@ -10,6 +10,7 @@ namespace SignE.Platforms.RayLib.Graphics
         private Dictionary<string, ISprite> _loadedSprites = new Dictionary<string, ISprite>();
         public ICamera2D Camera2D { get; set; } = new RaylibCamera2D();
         public bool DebugDraw { get; set; } = false;
+        public float DeltaTime => Raylib.GetFrameTime();
 
         public void DrawCircle(float x, float y, float r)
         {

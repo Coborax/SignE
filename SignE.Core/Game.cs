@@ -7,7 +7,7 @@ namespace SignE.Core
     public abstract class Game : IDisposable
     {
         protected World World;
-        
+
         public void Run()
         {
             Loop();
