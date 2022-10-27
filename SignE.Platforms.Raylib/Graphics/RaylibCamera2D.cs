@@ -16,7 +16,7 @@ namespace SignE.Platforms.RayLib.Graphics
 
         public float Y
         {
-            get => Camera2D.target.Y; 
+            get => Camera2D.target.Y;
             set => Camera2D.target.Y = value;
         }
 
@@ -24,6 +24,11 @@ namespace SignE.Platforms.RayLib.Graphics
         {
             get => Camera2D.zoom;
             set => Camera2D.zoom = value;
+        }
+
+        public void SetOffsetCenter(float x, float y)
+        {
+            Camera2D.offset = new Vector2(x, y);
         }
     }
 }

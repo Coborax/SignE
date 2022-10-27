@@ -18,12 +18,12 @@ namespace SignE.ExampleGame
             
             Entity entity = new Entity();
             entity.AddComponent(new Position2DComponent(10, 10));
-            entity.AddComponent(new SpriteComponent("Resources/torben.png", 10));
+            entity.AddComponent(new SpriteComponent("Resources/rpg-pack/chars/gabe/gabe-idle-run.png", 10));
             entity.AddComponent(new Movement2DComponent());
             world.AddEntity(entity);
 
             entity = new Entity();
-            entity.AddComponent(new Position2DComponent(1280/2, 720/2));
+            entity.AddComponent(new Position2DComponent(0, 0));
             entity.AddComponent(new SpriteComponent("Resources/rpg-pack/atlas.png"));
             entity.AddComponent(new Movement2DComponent());
             world.AddEntity(entity);
@@ -31,6 +31,8 @@ namespace SignE.ExampleGame
             world.RegisterSystem(new DrawGameSystem());
             world.RegisterSystem(new Movement2DSystem());
             world.RegisterSystem(new YSortSystem());
+            
+            Core.SignE.Graphics.Camera2D.Zoom = 3;
             
             game.Run();
         }
