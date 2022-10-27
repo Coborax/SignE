@@ -1,8 +1,11 @@
+using System.Runtime.InteropServices.ComTypes;
+
 namespace SignE.Core.Graphics
 {
     public interface IGraphics
     {
         public ICamera2D Camera2D { get; set; }
+        public bool DebugDraw { get; set; }
         
         // Primitive Shapes
         void DrawCircle(float x, float y, float r);
@@ -10,6 +13,8 @@ namespace SignE.Core.Graphics
         
         // Sprites
         ISprite CreateSprite(string path);
+        ISprite CreateSpritesheet(string path, float tileWidth, float tileHeight);
         void DrawSprite(ISprite sprite, float x, float y);
+        void DrawSprite(ISprite sprite, float x, float y, float tx, float ty);
     }
 }

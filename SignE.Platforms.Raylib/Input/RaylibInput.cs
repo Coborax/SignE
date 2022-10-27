@@ -7,7 +7,12 @@ namespace SignE.Platforms.RayLib.Input
     {
         public bool IsKeyDown(Key key)
         {
-            return Raylib.IsKeyDown((KeyboardKey)key);
+            return Raylib.IsKeyDown((KeyboardKey) key);
+        }
+
+        public bool IsKeyPressed(Key key)
+        {
+            return Raylib.IsKeyPressed((KeyboardKey) key);
         }
     }
 }

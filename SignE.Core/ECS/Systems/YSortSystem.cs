@@ -8,6 +8,7 @@ namespace SignE.Core.ECS.Systems
         public void UpdateSystem(World world)
         {
             var entities = world.Entities
+                .WithComponent<YSortComponent>()
                 .WithComponent<Position2DComponent>()
                 .WithComponent<SpriteComponent>();
 

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using SignE.Core.ECS.Components;
 using SignE.Core.Extensions;
+using SignE.Core.Input;
 
 namespace SignE.Core.ECS.Systems
 {
@@ -8,7 +9,23 @@ namespace SignE.Core.ECS.Systems
     {
         public void UpdateSystem(World world)
         {
-            
+            var entities = world.Entities
+                .WithComponent<SpriteComponent>()
+                .ToList();
+
+            foreach (var entity in entities)
+            {
+                var sprite = entity.GetComponent<SpriteComponent>();
+
+                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.RIGHT))
+                    sprite.TileX += 1;
+                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.LEFT))
+                    sprite.TileX -= 1;
+                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.DOWN))
+                    sprite.TileY += 1;
+                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.UP))
+                    sprite.TileY -= 1;
+            }
         }
 
         public void DrawSystem(World world)
@@ -60,8 +77,12 @@ namespace SignE.Core.ECS.Systems
             foreach (var entity in entities)
             {
                 var pos = entity.GetComponent<Position2DComponent>();
-                var sprite = entity.GetComponent<SpriteComponent>().Sprite;
-                SignE.Graphics.DrawSprite(sprite, pos.X, pos.Y);
+                var sprite = entity.GetComponent<SpriteComponent>();
+
+                if (sprite.Sprite.IsSpritesheet)
+                    SignE.Graphics.DrawSprite(sprite.Sprite, pos.X, pos.Y, sprite.TileX, sprite.TileY);
+                else 
+                    SignE.Graphics.DrawSprite(sprite.Sprite, pos.X, pos.Y);
             }
         }
 

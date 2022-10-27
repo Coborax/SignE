@@ -1,5 +1,7 @@
 ﻿using System.Numerics;
 using Raylib_cs;
+using SignE.Core.ECS;
+using SignE.Core.ECS.Components;
 using SignE.Core.Graphics;
 
 namespace SignE.Platforms.RayLib.Graphics
@@ -25,6 +27,8 @@ namespace SignE.Platforms.RayLib.Graphics
             get => Camera2D.zoom;
             set => Camera2D.zoom = value;
         }
+
+        public Entity Target { get; set; }
 
         public void SetOffsetCenter(float x, float y)
         {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 using Raylib_cs;
 using SignE.Core.Graphics;
 
@@ -8,6 +9,7 @@ namespace SignE.Platforms.RayLib.Graphics
     {
         private Dictionary<string, ISprite> _loadedSprites = new Dictionary<string, ISprite>();
         public ICamera2D Camera2D { get; set; } = new RaylibCamera2D();
+        public bool DebugDraw { get; set; } = false;
 
         public void DrawCircle(float x, float y, float r)
         {
@@ -29,11 +31,42 @@ namespace SignE.Platforms.RayLib.Graphics
 
             return sprite;
         }
-        
+
+        public ISprite CreateSpritesheet(string path, float tileWidth, float tileHeight)
+        {
+            if (_loadedSprites.ContainsKey(path))
+                return _loadedSprites.GetValueOrDefault(path);
+            
+            var sprite = new RaylibSprite(path, tileWidth, tileHeight);
+            _loadedSprites.Add(path, sprite);
+
+            return sprite;
+        }
+
         public void DrawSprite(ISprite sprite, float x, float y)
         {
             if (sprite is RaylibSprite raylibSprite)
                 Raylib.DrawTexture(raylibSprite.Texture2D, (int) (x - sprite.Width / 2), (int) (y - sprite.Height / 2), Color.WHITE);
+
+            if (DebugDraw)
+                Raylib.DrawRectangleLines((int) (x - sprite.Width / 2), (int) (y - sprite.Height / 2), (int) sprite.Width, (int) sprite.Height, Color.RED);
         }
+
+        public void DrawSprite(ISprite sprite, float x, float y, float tx, float ty)
+        {
+            if (sprite is RaylibSprite raylibSprite && raylibSprite.IsSpritesheet)
+                Raylib.DrawTextureRec(raylibSprite.Texture2D, 
+                    new Rectangle(raylibSprite.TileWidth * tx, raylibSprite.TileHeight * ty, raylibSprite.TileWidth, raylibSprite.TileHeight), 
+                    new Vector2(x - sprite.TileHeight / 2, y - sprite.TileWidth / 2), 
+                    Color.WHITE);
+            
+            if (DebugDraw)
+                Raylib.DrawRectangleLines((int) (x - sprite.TileWidth / 2), (int) (y - sprite.TileHeight / 2), (int) sprite.TileWidth, (int) sprite.TileHeight, Color.RED);
+        }
+
+        /*private void IsInView(float x, float y)
+        {
+            ((RaylibCamera2D)Camera2D).Camera2D.
+        }*/
     }
 }
