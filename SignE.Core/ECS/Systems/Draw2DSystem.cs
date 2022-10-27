@@ -5,27 +5,11 @@ using SignE.Core.Input;
 
 namespace SignE.Core.ECS.Systems
 {
-    public class DrawGameSystem : IGameSystem
+    public class Draw2DSystem : IGameSystem
     {
         public void UpdateSystem(World world)
         {
-            var entities = world.Entities
-                .WithComponent<SpriteComponent>()
-                .ToList();
-
-            foreach (var entity in entities)
-            {
-                var sprite = entity.GetComponent<SpriteComponent>();
-
-                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.RIGHT))
-                    sprite.TileX += 1;
-                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.LEFT))
-                    sprite.TileX -= 1;
-                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.DOWN))
-                    sprite.TileY += 1;
-                if (sprite.Sprite.IsSpritesheet && SignE.Input.IsKeyPressed(Key.UP))
-                    sprite.TileY -= 1;
-            }
+            
         }
 
         public void DrawSystem(World world)

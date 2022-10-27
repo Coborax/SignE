@@ -41,7 +41,7 @@ namespace SignE.ExampleGame
             
             
 
-            world.RegisterSystem(new DrawGameSystem());
+            world.RegisterSystem(new Draw2DSystem());
             world.RegisterSystem(new Movement2DSystem());
             world.RegisterSystem(new YSortSystem());
             world.RegisterSystem(new Camera2DSystem());
