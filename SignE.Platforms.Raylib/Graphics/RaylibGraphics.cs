@@ -53,11 +53,13 @@ namespace SignE.Platforms.RayLib.Graphics
                 Raylib.DrawRectangleLines((int) (x - sprite.Width / 2), (int) (y - sprite.Height / 2), (int) sprite.Width, (int) sprite.Height, Color.RED);
         }
 
-        public void DrawSprite(ISprite sprite, float x, float y, float tx, float ty)
+        public void DrawSprite(ISprite sprite, float x, float y, float tx, float ty, bool flipX = false, bool flipY = false)
         {
+            float xMod = flipX ? -1 : 1;
+            float yMod = flipY ? -1 : 1;
             if (sprite is RaylibSprite raylibSprite && raylibSprite.IsSpritesheet)
                 Raylib.DrawTextureRec(raylibSprite.Texture2D, 
-                    new Rectangle(raylibSprite.TileWidth * tx, raylibSprite.TileHeight * ty, raylibSprite.TileWidth, raylibSprite.TileHeight), 
+                    new Rectangle(raylibSprite.TileWidth * tx, raylibSprite.TileHeight * ty, raylibSprite.TileWidth * xMod, raylibSprite.TileHeight * yMod),
                     new Vector2(x - sprite.TileHeight / 2, y - sprite.TileWidth / 2), 
                     Color.WHITE);
             

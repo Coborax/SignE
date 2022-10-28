@@ -36,6 +36,12 @@
       <None Update="Resources\rpg-pack\chars\gabe\gabe-idle-run.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Resources\ExampleWorld.ldtk">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\cavesofgallet_tiles.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

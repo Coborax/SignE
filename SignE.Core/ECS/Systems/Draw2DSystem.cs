@@ -72,7 +72,7 @@ namespace SignE.Core.ECS.Systems
                 var sprite = entity.GetComponent<SpriteComponent>();
 
                 if (sprite.Sprite.IsSpritesheet)
-                    SignE.Graphics.DrawSprite(sprite.Sprite, pos.X, pos.Y, sprite.TileX, sprite.TileY);
+                    SignE.Graphics.DrawSprite(sprite.Sprite, pos.X, pos.Y, sprite.TileX, sprite.TileY, sprite.FlipX, sprite.FlipY);
                 else 
                     SignE.Graphics.DrawSprite(sprite.Sprite, pos.X, pos.Y);
             }

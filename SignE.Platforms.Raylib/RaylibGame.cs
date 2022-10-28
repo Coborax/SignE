@@ -23,7 +23,7 @@ namespace SignE.Platforms.RayLib
             Raylib.InitWindow(w, h, title);
             //Raylib.SetTargetFPS(60);
             
-            ((RaylibCamera2D)Core.SignE.Graphics.Camera2D).SetOffsetCenter(w / 2, h / 2);
+            //((RaylibCamera2D)Core.SignE.Graphics.Camera2D).SetOffsetCenter(w / 2, h / 2);
         }
 
         protected override void Loop()

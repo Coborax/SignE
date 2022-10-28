@@ -16,6 +16,6 @@ namespace SignE.Core.Graphics
         ISprite CreateSprite(string path);
         ISprite CreateSpritesheet(string path, float tileWidth, float tileHeight);
         void DrawSprite(ISprite sprite, float x, float y);
-        void DrawSprite(ISprite sprite, float x, float y, float tx, float ty);
+        void DrawSprite(ISprite sprite, float x, float y, float tx, float ty, bool flipX = false, bool flipY = false);
     }
 }
