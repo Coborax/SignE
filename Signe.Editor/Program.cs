@@ -20,7 +20,7 @@ namespace Signe.Editor
             
             SignE.Core.SignE.Graphics.ImGui = new EditorImGui();
             
-            SignE.Core.SignE.LevelManager.AddLevel(new TestLevel("Level_1"));
+            SignE.Core.SignE.LevelManager.AddLevel(new EditorLevel("Level_1"));
             SignE.Core.SignE.LevelManager.LoadLevel("Level_1");
 
             SignE.Core.SignE.Graphics.Camera2D.Zoom = 3;
@@ -29,9 +29,9 @@ namespace Signe.Editor
         }
     }
 
-    class TestLevel : Level
+    class EditorLevel : Level
     {
-        public TestLevel(string name)
+        public EditorLevel(string name)
         {
             Name = name;
         }
@@ -53,10 +53,18 @@ namespace Signe.Editor
             
             ent = new Entity();
             ent.AddComponent(new Position2DComponent(200, 100));
-            ent.AddComponent(new SpriteComponent("Resources/cavesofgallet_tiles.png"));
+            ent.AddComponent(new SpriteComponent("Resources/Default/Tileset.png"));
             World.AddEntity(ent);
             
+            ent = new Entity();
+            ent.AddComponent(new Position2DComponent(200, 100));
+            ent.AddComponent(new SpriteComponent("Resources/Default/Tileset.png"));
+            World.AddEntity(ent);
+            
+            // Register systems needed for editor functionality (Mostly drawing and editor control related systems)
             World.RegisterSystem(new Draw2DSystem());
+            World.RegisterSystem(new Movement2DSystem());
+            World.RegisterSystem(new YSortSystem());
         }
     }
 }

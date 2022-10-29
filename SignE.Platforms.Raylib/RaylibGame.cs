@@ -71,7 +71,7 @@ namespace SignE.Platforms.RayLib
 
         private void DrawGame()
         {
-            Raylib.ClearBackground(Color.RAYWHITE);
+            Raylib.ClearBackground(new Color(24, 20, 37, 255));
             
             Raylib.BeginMode2D(((RaylibCamera2D)Core.SignE.Graphics.Camera2D).Camera2D);
                 

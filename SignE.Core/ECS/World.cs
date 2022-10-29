@@ -34,6 +34,15 @@ namespace SignE.Core.ECS
                 system.GetEntities(this);
             }
         }
+        
+        public void RemoveComponent(Entity entity, IComponent component)
+        {
+            entity.RemoveComponent(component);
+            foreach (var system in _systems)
+            {
+                system.GetEntities(this);
+            }
+        }
 
         public void RegisterSystem(GameSystem gameSystem)
         { 

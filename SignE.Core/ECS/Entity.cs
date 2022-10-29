@@ -28,5 +28,10 @@ namespace SignE.Core.ECS
         {
             return _components;
         }
+
+        public void RemoveComponent(IComponent component)
+        {
+            _components.Remove(component);
+        }
     }
 }

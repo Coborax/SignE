@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using ImGuiNET;
 using SignE.Core.ECS;
 using SignE.Core.Graphics;
+using IComponent = SignE.Core.ECS.IComponent;
 
 namespace Signe.Editor
 {
@@ -147,6 +149,26 @@ namespace Signe.Editor
                     ImGui.OpenPopup("AddComponent");
                 }
                 
+                if (ImGui.Button("Remove Component"))
+                {
+                    ImGui.OpenPopup("RemoveComponent");
+                }
+                
+                if (ImGui.BeginPopup("RemoveComponent"))
+                {
+                    foreach (var component in _editor.SelectedEntity.GetComponents())
+                    {
+                        if (ImGui.Button(component.GetType().Name))
+                        {
+                            _editor.CurrentLevel.World.RemoveComponent(_editor.SelectedEntity, component);
+                            ImGui.CloseCurrentPopup();
+                            break;
+                        }
+                    }
+                    
+                    ImGui.EndPopup();
+                }
+                
                 if (ImGui.BeginPopup("AddComponent"))
                 {
                     var t = typeof(IComponent);
@@ -193,7 +215,7 @@ namespace Signe.Editor
                             prop.SetValue(component, b);
                         }
                     }
-                    
+
                     ImGui.Spacing();
                 }
             }
