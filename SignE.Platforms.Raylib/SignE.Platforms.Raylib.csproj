@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -9,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="ImGui.NET" Version="1.88.0" />
       <PackageReference Include="Raylib-cs" Version="4.2.0.1" />
     </ItemGroup>
 

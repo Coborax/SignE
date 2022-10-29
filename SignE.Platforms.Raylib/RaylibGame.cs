@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Numerics;
+using ImGuiNET;
 using SignE.Core;
 using Raylib_cs;
+using rlImGui_cs;
 using SignE.Core.ECS;
 using SignE.Platforms.RayLib.Graphics;
 using SignE.Platforms.RayLib.Input;
@@ -24,6 +26,10 @@ namespace SignE.Platforms.RayLib
             //Raylib.SetTargetFPS(60);
             
             //((RaylibCamera2D)Core.SignE.Graphics.Camera2D).SetOffsetCenter(w / 2, h / 2);
+            
+            
+            rlImGui.Setup(true);
+            ImGui.GetIO().ConfigFlags = ImGuiConfigFlags.DockingEnable;
         }
 
         protected override void Loop()
@@ -45,12 +51,35 @@ namespace SignE.Platforms.RayLib
                 
                 Raylib.DrawFPS(10, 10);
 
+                rlImGui.Begin();
+
+                if (ImGui.BeginMainMenuBar())
+                {
+                    if (ImGui.BeginMenu("Projects"))
+                    {
+                        if (ImGui.MenuItem("Test")) { }
+                        ImGui.EndMenu();
+                    }
+                    
+                    if (ImGui.BeginMenu("View"))
+                    {
+                        if (ImGui.MenuItem("Test")) { }
+                        ImGui.EndMenu();
+                    }
+
+                    ImGui.EndMainMenuBar();
+                }
+
+                rlImGui.End();
+                
                 Raylib.EndDrawing();
             }
         }
 
         public override void Dispose()
         {
+            rlImGui.Shutdown();
+            
             Raylib.CloseWindow();
             GC.SuppressFinalize(this);
         }
