@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignE.ExampleGame", "SignE.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignE.Platforms.Raylib", "SignE.Platforms.Raylib\SignE.Platforms.Raylib.csproj", "{C55BEE6F-54FD-40EE-99CB-CEFEBF62FA38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signe.Editor", "Signe.Editor\Signe.Editor.csproj", "{351462E2-FB4C-4EA7-ACA2-6AC9561B6D33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignE.Runner", "SignE.Runner\SignE.Runner.csproj", "{75D9E543-7D46-4B7D-9DC2-96E84E6CBE0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{C55BEE6F-54FD-40EE-99CB-CEFEBF62FA38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C55BEE6F-54FD-40EE-99CB-CEFEBF62FA38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C55BEE6F-54FD-40EE-99CB-CEFEBF62FA38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{351462E2-FB4C-4EA7-ACA2-6AC9561B6D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351462E2-FB4C-4EA7-ACA2-6AC9561B6D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351462E2-FB4C-4EA7-ACA2-6AC9561B6D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351462E2-FB4C-4EA7-ACA2-6AC9561B6D33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D9E543-7D46-4B7D-9DC2-96E84E6CBE0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D9E543-7D46-4B7D-9DC2-96E84E6CBE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D9E543-7D46-4B7D-9DC2-96E84E6CBE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D9E543-7D46-4B7D-9DC2-96E84E6CBE0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

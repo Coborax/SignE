@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SignE.Platforms.Raylib\SignE.Platforms.Raylib.csproj" />
+      <ProjectReference Include="..\SignE.Runner\SignE.Runner.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Resources\cavesofgallet_tiles.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

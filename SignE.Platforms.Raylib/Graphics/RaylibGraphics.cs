@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Numerics;
+using ImGuiNET;
 using Raylib_cs;
+using rlImGui_cs;
 using SignE.Core.Graphics;
 
 namespace SignE.Platforms.RayLib.Graphics
@@ -9,9 +11,11 @@ namespace SignE.Platforms.RayLib.Graphics
     {
         private Dictionary<string, ISprite> _loadedSprites = new Dictionary<string, ISprite>();
         public ICamera2D Camera2D { get; set; } = new RaylibCamera2D();
+        public IImGui ImGui { get; set; }
+        public RenderTexture2D RenderTexture2D { get; set; }
         public bool DebugDraw { get; set; } = false;
         public float DeltaTime => Raylib.GetFrameTime();
-
+        
         public void DrawCircle(float x, float y, float r)
         {
             Raylib.DrawCircle((int)x, (int)y, r, Color.RED);
@@ -65,6 +69,33 @@ namespace SignE.Platforms.RayLib.Graphics
             
             if (DebugDraw)
                 Raylib.DrawRectangleLines((int) (x - sprite.TileWidth / 2), (int) (y - sprite.TileHeight / 2), (int) sprite.TileWidth, (int) sprite.TileHeight, Color.RED);
+        }
+
+        public void InitImGui()
+        {
+            rlImGui.Setup();
+            ImGuiNET.ImGui.GetIO().ConfigFlags = ImGuiConfigFlags.DockingEnable;
+        }
+
+        public void BeginImGui()
+        {
+            rlImGui.Begin();
+        }
+
+        public void EndImGui()
+        {
+            rlImGui.End();
+        }
+
+        public void CleanupImGui()
+        {
+            rlImGui.Shutdown();
+        }
+
+        public void DrawGameImGui(int w, int h)
+        {
+            rlImGui.ImageRect(RenderTexture2D.texture, w, h, 
+                new Rectangle(RenderTexture2D.texture.width / 2 - w / 2, RenderTexture2D.texture.height / 2 - h / 2, w, -h));
         }
 
         /*private void IsInView(float x, float y)

@@ -5,6 +5,7 @@ namespace SignE.Core.Graphics
     public interface IGraphics
     {
         public ICamera2D Camera2D { get; set; }
+        public IImGui ImGui { get; set; }
         public bool DebugDraw { get; set; }
         public float DeltaTime { get; }
         
@@ -17,5 +18,12 @@ namespace SignE.Core.Graphics
         ISprite CreateSpritesheet(string path, float tileWidth, float tileHeight);
         void DrawSprite(ISprite sprite, float x, float y);
         void DrawSprite(ISprite sprite, float x, float y, float tx, float ty, bool flipX = false, bool flipY = false);
+        
+        //ImGui
+        void InitImGui();
+        void BeginImGui();
+        void EndImGui();
+        void CleanupImGui();
+        void DrawGameImGui(int w, int h);
     }
 }

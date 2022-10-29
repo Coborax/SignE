@@ -4,6 +4,11 @@ namespace SignE.Core.ECS.Components
     {
         public float Radius { get; set; }
 
+        public CircleComponent()
+        {
+            Radius = 10;
+        }
+        
         public CircleComponent(float r)
         {
             Radius = r;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SignE.Core.Levels
 {
@@ -18,5 +19,11 @@ namespace SignE.Core.Levels
             CurrentLevel = _levels.GetValueOrDefault(name);
             CurrentLevel?.LoadLevel();
         }
+
+        public List<Level> GetLevelList()
+        {
+            return _levels.Values.ToList();
+        }
+        
     }
 }

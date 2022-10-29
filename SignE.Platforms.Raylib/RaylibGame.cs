@@ -12,6 +12,8 @@ namespace SignE.Platforms.RayLib
 {
     public class RaylibGame : Game
     {
+        private RenderTexture2D _renderTexture2D;
+        
         public RaylibGame()
         {
             Core.SignE.Graphics = new RaylibGraphics();
@@ -26,10 +28,11 @@ namespace SignE.Platforms.RayLib
             //Raylib.SetTargetFPS(60);
             
             //((RaylibCamera2D)Core.SignE.Graphics.Camera2D).SetOffsetCenter(w / 2, h / 2);
+
+            _renderTexture2D = Raylib.LoadRenderTexture(w, h);
+            ((RaylibGraphics) Core.SignE.Graphics).RenderTexture2D = _renderTexture2D;
             
-            
-            rlImGui.Setup(true);
-            ImGui.GetIO().ConfigFlags = ImGuiConfigFlags.DockingEnable;
+            Core.SignE.Graphics.InitImGui();
         }
 
         protected override void Loop()
@@ -37,49 +40,56 @@ namespace SignE.Platforms.RayLib
             while (!Raylib.WindowShouldClose())
             {
                 World.UpdateSystems();
-                Core.SignE.LevelManager.CurrentLevel.World.UpdateSystems();
+
+                if (Core.SignE.LevelManager.CurrentLevel != null)
+                    Core.SignE.LevelManager.CurrentLevel.World.UpdateSystems();
+
+                if (RenderGameToTexture)
+                {
+                    Raylib.BeginTextureMode(_renderTexture2D);
+                    DrawGame();
+                    Raylib.EndTextureMode();
+                }
                 
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.RAYWHITE);
-
-                Raylib.BeginMode2D(((RaylibCamera2D)Core.SignE.Graphics.Camera2D).Camera2D);
                 
-                World.DrawSystems();
-                Core.SignE.LevelManager.CurrentLevel.World.DrawSystems();
-                
-                Raylib.EndMode2D();
-                
-                Raylib.DrawFPS(10, 10);
+                if (!RenderGameToTexture)
+                    DrawGame();
 
-                rlImGui.Begin();
+                Core.SignE.Graphics.BeginImGui();
 
-                if (ImGui.BeginMainMenuBar())
+                if (Core.SignE.Graphics.ImGui != null)
                 {
-                    if (ImGui.BeginMenu("Projects"))
-                    {
-                        if (ImGui.MenuItem("Test")) { }
-                        ImGui.EndMenu();
-                    }
-                    
-                    if (ImGui.BeginMenu("View"))
-                    {
-                        if (ImGui.MenuItem("Test")) { }
-                        ImGui.EndMenu();
-                    }
-
-                    ImGui.EndMainMenuBar();
+                    Core.SignE.Graphics.ImGui.SubmitUi();
                 }
 
-                rlImGui.End();
+                Core.SignE.Graphics.EndImGui();
                 
                 Raylib.EndDrawing();
             }
         }
 
+        private void DrawGame()
+        {
+            Raylib.ClearBackground(Color.RAYWHITE);
+            
+            Raylib.BeginMode2D(((RaylibCamera2D)Core.SignE.Graphics.Camera2D).Camera2D);
+                
+            World.DrawSystems();
+            if (Core.SignE.LevelManager.CurrentLevel != null)
+                Core.SignE.LevelManager.CurrentLevel.World.DrawSystems();
+                
+            Raylib.EndMode2D();
+            
+            Raylib.DrawFPS(10, 10);
+        }
+
+
         public override void Dispose()
         {
-            rlImGui.Shutdown();
-            
+            Core.SignE.Graphics.CleanupImGui();
+
+            Raylib.UnloadRenderTexture(_renderTexture2D);
             Raylib.CloseWindow();
             GC.SuppressFinalize(this);
         }

@@ -2,6 +2,12 @@
 {
     public class Position2DComponent : IComponent
     {
+        public Position2DComponent()
+        {
+            this.X = 0;
+            this.Y = 0;
+        }
+        
         public Position2DComponent(int x, int y)
         {
             this.X = x;

@@ -6,6 +6,8 @@ namespace SignE.Core
 {
     public abstract class Game : IDisposable
     {
+        public bool RenderGameToTexture { get; set; } = false;
+        
         protected World World;
 
         public void Run()

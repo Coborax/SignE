@@ -23,5 +23,10 @@ namespace SignE.Core.ECS
         {
             return (T)_components.Find(c => c is T);
         }
+
+        public List<IComponent> GetComponents()
+        {
+            return _components;
+        }
     }
 }
