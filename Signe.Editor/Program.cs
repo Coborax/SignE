@@ -4,6 +4,7 @@ using SignE.Core.ECS;
 using SignE.Core.ECS.Components;
 using SignE.Core.ECS.Systems;
 using SignE.Core.Levels;
+using Signe.Editor.ECS.Systems;
 using SignE.Platforms.RayLib;
 
 namespace Signe.Editor
@@ -24,6 +25,8 @@ namespace Signe.Editor
             SignE.Core.SignE.LevelManager.LoadLevel("Level_1");
 
             SignE.Core.SignE.Graphics.Camera2D.Zoom = 3;
+            
+            world.RegisterSystem(new EditorControlSystem());
             
             game.Run();
         }
