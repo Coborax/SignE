@@ -82,7 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot][product-screenshot]
 
 This project started because I was interested in making my own Game Engine, both for fun but also as a challenge for myself.
 Right now the engine is in very early development, and is not ready for production use. As this is a hobby project, it might never become ready.
@@ -244,7 +244,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: Images/Editor.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
