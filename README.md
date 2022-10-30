@@ -82,7 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Product Name Screen Shot][product-screenshot]
+<img src="Images/Editor.png" alt="Editor" width="600">
 
 This project started because I was interested in making my own Game Engine, both for fun but also as a challenge for myself.
 Right now the engine is in very early development, and is not ready for production use. As this is a hobby project, it might never become ready.
