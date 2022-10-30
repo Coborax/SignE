@@ -9,6 +9,8 @@ namespace Signe.Editor
 {
     public class Editor
     {
+        public static Editor MainEditor { get; set; } = new Editor();
+        
         public Project Project { get; set; }
         public List<Level> Levels => SignE.Core.SignE.LevelManager.GetLevelList();
         public Level CurrentLevel => SignE.Core.SignE.LevelManager.CurrentLevel;

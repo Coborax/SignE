@@ -25,9 +25,6 @@ namespace SignE.Platforms.RayLib
             base.Init(w, h, title, world);
             
             Raylib.InitWindow(w, h, title);
-            //Raylib.SetTargetFPS(60);
-            
-            //((RaylibCamera2D)Core.SignE.Graphics.Camera2D).SetOffsetCenter(w / 2, h / 2);
 
             _renderTexture2D = Raylib.LoadRenderTexture(w, h);
             ((RaylibGraphics) Core.SignE.Graphics).RenderTexture2D = _renderTexture2D;

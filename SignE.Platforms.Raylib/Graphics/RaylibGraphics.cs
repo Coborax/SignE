@@ -16,14 +16,20 @@ namespace SignE.Platforms.RayLib.Graphics
         public bool DebugDraw { get; set; } = false;
         public float DeltaTime => Raylib.GetFrameTime();
         
-        public void DrawCircle(float x, float y, float r)
+        public void DrawCircle(float x, float y, float r, bool fill = true)
         {
-            Raylib.DrawCircle((int)x, (int)y, r, Color.RED);
+            if (fill)
+                Raylib.DrawCircle((int)x, (int)y, r, Color.RED);
+            else
+                Raylib.DrawCircleLines((int)x, (int)y, r, Color.WHITE);
         }
 
-        public void DrawRectangle(float x, float y, int w, int h)
+        public void DrawRectangle(float x, float y, int w, int h, bool fill = true)
         {
-            Raylib.DrawRectangle((int)x - w / 2, (int)y - h / 2, w, h, Color.GREEN);
+            if (fill)
+                Raylib.DrawRectangle((int)x - w / 2, (int)y - h / 2, w, h, Color.GREEN);
+            else
+                Raylib.DrawRectangleLines((int)x - w / 2, (int)y - h / 2, w, h, Color.WHITE);
         }
 
         public ISprite CreateSprite(string path)
@@ -95,7 +101,9 @@ namespace SignE.Platforms.RayLib.Graphics
         public void DrawGameImGui(int w, int h)
         {
             rlImGui.ImageRect(RenderTexture2D.texture, w, h, 
-                new Rectangle(RenderTexture2D.texture.width / 2 - w / 2, RenderTexture2D.texture.height / 2 - h / 2, w, -h));
+                new Rectangle(0, 0, w, -h));
+            //rlImGui.ImageRect(RenderTexture2D.texture, w, h, 
+                //new Rectangle(RenderTexture2D.texture.width / 2 - w / 2, RenderTexture2D.texture.height / 2 - h / 2, w, -h));
         }
 
         /*private void IsInView(float x, float y)

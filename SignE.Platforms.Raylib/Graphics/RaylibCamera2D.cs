@@ -8,7 +8,7 @@ namespace SignE.Platforms.RayLib.Graphics
 {
     public class RaylibCamera2D : ICamera2D
     {
-        public Camera2D Camera2D = new Camera2D(Vector2.Zero, Vector2.Zero, 0.0f, 0.0f);
+        public Camera2D Camera2D = new Camera2D(Vector2.Zero, Vector2.Zero, 0.0f, 1.0f);
 
         public float X
         {
@@ -25,7 +25,11 @@ namespace SignE.Platforms.RayLib.Graphics
         public float Zoom
         {
             get => Camera2D.zoom;
-            set => Camera2D.zoom = value;
+            set
+            {
+                SetOffsetCenter(Width / 2, Height / 2);
+                Camera2D.zoom = value;
+            }
         }
 
         public float Width => Raylib.GetScreenWidth() / Zoom;

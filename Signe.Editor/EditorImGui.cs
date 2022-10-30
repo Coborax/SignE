@@ -13,7 +13,7 @@ namespace Signe.Editor
 {
     public class EditorImGui : IImGui
     {
-        private Editor _editor = new Editor();
+        private Editor _editor = Editor.MainEditor;
 
         public void SubmitUi()
         {

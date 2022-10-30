@@ -27,6 +27,7 @@ namespace Signe.Editor
             SignE.Core.SignE.Graphics.Camera2D.Zoom = 3;
             
             world.RegisterSystem(new EditorControlSystem());
+            world.RegisterSystem(new EditorDrawSystem());
             
             game.Run();
         }
