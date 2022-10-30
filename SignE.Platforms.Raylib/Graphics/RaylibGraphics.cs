@@ -32,6 +32,11 @@ namespace SignE.Platforms.RayLib.Graphics
                 Raylib.DrawRectangleLines((int)x - w / 2, (int)y - h / 2, w, h, Color.WHITE);
         }
 
+        public void DrawText(float x, float y, int size, string str)
+        {
+            Raylib.DrawText(str, (int)x, (int)y, size, Color.WHITE);
+        }
+
         public ISprite CreateSprite(string path)
         {
             if (_loadedSprites.ContainsKey(path))

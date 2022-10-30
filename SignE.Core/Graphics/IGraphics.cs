@@ -12,6 +12,9 @@ namespace SignE.Core.Graphics
         // Primitive Shapes
         void DrawCircle(float x, float y, float r, bool fill = true);
         void DrawRectangle(float x, float y, int w, int h, bool fill = true);
+
+        // Text
+        void DrawText(float x, float y, int size, string str);
         
         // Sprites
         ISprite CreateSprite(string path);

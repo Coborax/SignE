@@ -1,4 +1,4 @@
-﻿using Raylib_cs;
+﻿using ImGuiNET;
 using SignE.Core.ECS;
 using SignE.Core.ECS.Components;
 
@@ -14,6 +14,20 @@ namespace Signe.Editor.ECS.Systems
         }
 
         public override void DrawSystem()
+        {
+            foreach (var entity in Entities)
+            {
+                if (entity.HasComponent<Position2DComponent>())
+                {
+                    var pos = entity.GetComponent<Position2DComponent>();
+                    SignE.Core.SignE.Graphics.DrawText(10, 10, 32, entity.Id.ToString());
+                }
+            }
+            
+            DrawSelectedEntity();
+        }
+
+        private void DrawSelectedEntity()
         {
             var selectedEntity = _editor.SelectedEntity;
             if (_editor.SelectedEntity == null || !_editor.SelectedEntity.HasComponent<Position2DComponent>()) return;
@@ -42,7 +56,7 @@ namespace Signe.Editor.ECS.Systems
 
         public override void GetEntities(World world)
         {
-            
+            Entities = world.Entities;
         }
     }
 }
