@@ -22,7 +22,7 @@ namespace Signe.Editor
             SignE.Core.SignE.Graphics.ImGui = new EditorImGui();
             
             SignE.Core.SignE.LevelManager.AddLevel(new EditorLevel("Level_1"));
-            SignE.Core.SignE.LevelManager.LoadLevel("Level_1");
+            SignE.Core.SignE.LevelManager.LoadLevel("Level_1", true);
 
             SignE.Core.SignE.Graphics.Camera2D.Zoom = 3;
             

@@ -12,12 +12,17 @@ namespace SignE.Core.Levels
         {
             _levels.Add(level.Name, level);
         }
-        
-        public void LoadLevel(string name)
+
+        public void LoadLevel(string name, bool paused = false)
         {
             CurrentLevel?.UnloadLevel();
             CurrentLevel = _levels.GetValueOrDefault(name);
-            CurrentLevel?.LoadLevel();
+            
+            if (CurrentLevel == null)
+                return;
+            
+            CurrentLevel.LoadLevel();
+            CurrentLevel.Paused = paused;
         }
 
         public List<Level> GetLevelList()

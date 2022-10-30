@@ -40,6 +40,7 @@ namespace Signe.Editor
                 return;
 
             SignE.Core.SignE.LevelManager.LoadLevel(level.Name);
+            CurrentLevel.Paused = true;
         }
     }
 }

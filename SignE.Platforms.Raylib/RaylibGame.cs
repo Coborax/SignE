@@ -38,7 +38,7 @@ namespace SignE.Platforms.RayLib
             {
                 World.UpdateSystems();
 
-                if (Core.SignE.LevelManager.CurrentLevel != null)
+                if (Core.SignE.LevelManager.CurrentLevel != null && !Core.SignE.LevelManager.CurrentLevel.Paused)
                     Core.SignE.LevelManager.CurrentLevel.World.UpdateSystems();
 
                 if (RenderGameToTexture)
