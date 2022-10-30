@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using SignE.Core.ECS;
 using SignE.Core.Levels;
 using SignE.Runner.Models;
@@ -16,6 +17,8 @@ namespace Signe.Editor
         public Level CurrentLevel => SignE.Core.SignE.LevelManager.CurrentLevel;
         
         public Entity SelectedEntity { get; set; }
+
+        public string ProjectDir { get; set; } = @"C:\Repos\SignE\SignE.ExampleGame";
 
         private IProjectWriter _projectWriter = new JsonProjectWriter();
         private IProjectReader _projectReader = new JsonProjectReader();

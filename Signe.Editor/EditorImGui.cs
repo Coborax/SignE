@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using ImGuiNET;
 using SignE.Core.ECS;
 using SignE.Core.Graphics;
+using SignE.Runner.Models;
 using IComponent = SignE.Core.ECS.IComponent;
 
 namespace Signe.Editor
@@ -24,6 +26,7 @@ namespace Signe.Editor
             ShowLevelsWindow();
             ShowLevelWorld();
             ShowInspector();
+            ShowAssetBrowser();
         }
 
         private void ShowMainDockWindow()
@@ -148,7 +151,7 @@ namespace Signe.Editor
                 {
                     ImGui.OpenPopup("AddComponent");
                 }
-                
+                ImGui.SameLine();
                 if (ImGui.Button("Remove Component"))
                 {
                     ImGui.OpenPopup("RemoveComponent");
@@ -221,6 +224,42 @@ namespace Signe.Editor
             }
             
             ImGui.End();
+        }
+
+        private void ShowAssetBrowser()
+        {
+            if (_editor.Project == null) 
+                return;
+
+            ImGui.Begin("Asset Browser");
+
+            string selectedPath = "";
+            if (ImGui.CollapsingHeader($"Root ({_editor.ProjectDir})"))
+            {
+                ShowDirTreeNode(_editor.ProjectDir);
+            }
+
+            ImGui.End();
+        }
+
+        private void ShowDirTreeNode(string directory)
+        {
+            foreach (var file in Directory.GetFiles(directory))
+            {
+                if (ImGui.Selectable(Path.GetFileName(file)))
+                {
+                    ImGui.Text(Path.GetFileName(file));
+                }
+            }
+            
+            foreach (var dir in Directory.GetDirectories(directory))
+            {
+                if (ImGui.TreeNode(Path.GetFileName(dir)))
+                {
+                    ShowDirTreeNode(dir);
+                    ImGui.TreePop();
+                }
+            }
         }
 
         private void ShowMainMenuBar()
