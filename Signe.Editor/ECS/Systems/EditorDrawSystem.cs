@@ -15,15 +15,7 @@ namespace Signe.Editor.ECS.Systems
 
         public override void DrawSystem()
         {
-            foreach (var entity in Entities)
-            {
-                if (entity.HasComponent<Position2DComponent>())
-                {
-                    var pos = entity.GetComponent<Position2DComponent>();
-                    SignE.Core.SignE.Graphics.DrawText(10, 10, 32, entity.Id.ToString());
-                }
-            }
-            
+            SignE.Core.SignE.Graphics.Draw2DGrid();
             DrawSelectedEntity();
         }
 

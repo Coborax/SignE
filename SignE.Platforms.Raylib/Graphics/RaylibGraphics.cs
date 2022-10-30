@@ -32,6 +32,15 @@ namespace SignE.Platforms.RayLib.Graphics
                 Raylib.DrawRectangleLines((int)x - w / 2, (int)y - h / 2, w, h, Color.WHITE);
         }
 
+        public void Draw2DGrid()
+        {
+            Rlgl.rlPushMatrix();
+            Rlgl.rlTranslatef(0, 25*50, 0);
+            Rlgl.rlRotatef(90, 1, 0, 0);
+            Raylib.DrawGrid(100, 50);
+            Rlgl.rlPopMatrix();
+        }
+
         public void DrawText(float x, float y, int size, string str)
         {
             Raylib.DrawText(str, (int)x, (int)y, size, Color.WHITE);

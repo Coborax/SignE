@@ -13,6 +13,8 @@ namespace SignE.Core.Graphics
         void DrawCircle(float x, float y, float r, bool fill = true);
         void DrawRectangle(float x, float y, int w, int h, bool fill = true);
 
+        void Draw2DGrid();
+
         // Text
         void DrawText(float x, float y, int size, string str);
         
