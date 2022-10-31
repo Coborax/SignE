@@ -6,6 +6,8 @@ using SignE.Core.ECS.Systems;
 using SignE.Core.Levels;
 using Signe.Editor.ECS.Systems;
 using SignE.Platforms.RayLib;
+using SignE.Runner;
+using SignE.Runner.Models;
 
 namespace Signe.Editor
 {
@@ -29,18 +31,13 @@ namespace Signe.Editor
         }
     }
 
-    class EditorLevel : Level
+    class EditorLevel : JsonLevel
     {
-        public EditorLevel(string name)
-        {
-            Name = name;
-        }
-        
         public override string Name { get; set; }
         public override void LoadLevel()
         {
-            World = new World();
-
+            base.LoadLevel();
+            
             // Register systems needed for editor functionality (Mostly drawing and editor control related systems)
             World.RegisterSystem(new Draw2DSystem());
             World.RegisterSystem(new Movement2DSystem());

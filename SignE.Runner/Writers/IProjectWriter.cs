@@ -1,9 +1,11 @@
-﻿using SignE.Runner.Models;
+﻿using SignE.Core.Levels;
+using SignE.Runner.Models;
 
-namespace SignE.Runner.Readers
+namespace SignE.Runner.Writers
 {
     public interface IProjectWriter
     {
-        void ReadProject(Project project, string filepath);
+        void WriteProject(Project project, string filepath);
+        void WriteLevel(Level level, string filepath);
     }
 }

@@ -19,9 +19,18 @@ namespace Signe.Editor
         public Entity SelectedEntity { get; set; }
 
         public string ProjectDir { get; set; } = @"C:\Repos\SignE\SignE.ExampleGame";
+        public string CurrentLevelPath => ((EditorLevel) SignE.Core.SignE.LevelManager.CurrentLevel).File;
 
         private IProjectWriter _projectWriter = new JsonProjectWriter();
         private IProjectReader _projectReader = new JsonProjectReader();
+
+        public Editor()
+        {
+            //SignE.Core.SignE.LevelManager.AddLevel(new EditorLevel("Level_1"));
+            //SignE.Core.SignE.LevelManager.LoadLevel("Level_1", true);
+
+            //_projectWriter.WriteLevel(CurrentLevel,$"{ProjectDir}/test.level");
+    }
         
         public void CreateNewProject()
         {
@@ -29,7 +38,7 @@ namespace Signe.Editor
             {
                 ProjectName = "NewProject"
             };
-            _projectWriter.ReadProject(project, "test.json");
+            _projectWriter.WriteProject(project, "test.json");
         }
         
         public void LoadProject()
@@ -44,6 +53,19 @@ namespace Signe.Editor
 
             SignE.Core.SignE.LevelManager.LoadLevel(level.Name);
             CurrentLevel.Paused = true;
+        }
+
+        public void LoadLevelFromFile(string file)
+        {
+            var level = _projectReader.ReadLevel<EditorLevel>(file);
+            SignE.Core.SignE.LevelManager.AddLevel(level);
+            
+            LoadLevel(level);
+        }
+
+        public void SaveCurrentLevel()
+        {
+            _projectWriter.WriteLevel(CurrentLevel, CurrentLevelPath);
         }
     }
 }

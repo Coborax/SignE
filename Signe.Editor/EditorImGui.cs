@@ -257,7 +257,7 @@ namespace Signe.Editor
                 
                 if (ImGui.IsItemHovered() && ImGui.IsMouseDoubleClicked(0))
                 {
-                    Process.Start("explorer", "\"" + file + "\"");
+                    HandleFileClick(file);
                 }
             }
             
@@ -268,6 +268,21 @@ namespace Signe.Editor
                     ShowDirTreeNode(dir);
                     ImGui.TreePop();
                 }
+            }
+        }
+
+        private void HandleFileClick(string file)
+        {
+            var fileExt = Path.GetExtension(file);
+
+            switch (fileExt)
+            {
+                case ".level":
+                    _editor.LoadLevelFromFile(file);
+                    break;
+                default:
+                    Process.Start("explorer", "\"" + file + "\"");
+                    break;
             }
         }
 
@@ -290,6 +305,22 @@ namespace Signe.Editor
                     
                     if (ImGui.MenuItem("Exit")) { }
 
+                    ImGui.EndMenu();
+                }
+                
+                if (ImGui.BeginMenu("Levels"))
+                {
+                    
+                    if (ImGui.MenuItem("New Level")) { }
+                    
+                    ImGui.Separator();
+                    
+                    if (ImGui.MenuItem("Save Current Level"))
+                        _editor.SaveCurrentLevel();
+                    
+                    if (ImGui.MenuItem("Close Current Level"))
+                        _editor.SaveCurrentLevel();
+                    
                     ImGui.EndMenu();
                 }
 
