@@ -71,6 +71,9 @@ namespace Signe.Editor
                 return;
 
             ImGui.Begin("Levels");
+
+            // Disable input if levels window is not hovered
+            SignE.Core.SignE.Input.IsInputActive = ImGui.IsWindowHovered();
             
             if (ImGui.BeginTabBar("LevelsTab"))
             {

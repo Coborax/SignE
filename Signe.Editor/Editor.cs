@@ -34,7 +34,7 @@ namespace Signe.Editor
         
         public void LoadProject()
         {
-            Project = _projectReader.ReadProject("test.json");
+            Project = _projectReader.ReadProject($"{ProjectDir}/project.json");
         }
 
         public void LoadLevel(Level level)
