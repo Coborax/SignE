@@ -20,10 +20,6 @@ namespace Signe.Editor
             game.RenderGameToTexture = true;
             
             SignE.Core.SignE.Graphics.ImGui = new EditorImGui();
-            
-            SignE.Core.SignE.LevelManager.AddLevel(new EditorLevel("Level_1"));
-            SignE.Core.SignE.LevelManager.LoadLevel("Level_1", true);
-
             SignE.Core.SignE.Graphics.Camera2D.Zoom = 3;
             
             world.RegisterSystem(new EditorControlSystem());
@@ -45,26 +41,6 @@ namespace Signe.Editor
         {
             World = new World();
 
-            var ent = new Entity();
-            ent.AddComponent(new Position2DComponent(100, 100));
-            ent.AddComponent(new CircleComponent(10.0f));
-            World.AddEntity(ent);
-            
-            ent = new Entity();
-            ent.AddComponent(new Position2DComponent(150, 100));
-            ent.AddComponent(new RectangleComponent(10, 40));
-            World.AddEntity(ent);
-            
-            ent = new Entity();
-            ent.AddComponent(new Position2DComponent(200, 100));
-            ent.AddComponent(new SpriteComponent("Resources/Default/Tileset.png"));
-            World.AddEntity(ent);
-            
-            ent = new Entity();
-            ent.AddComponent(new Position2DComponent(200, 100));
-            ent.AddComponent(new SpriteComponent("Resources/Default/Tileset.png"));
-            World.AddEntity(ent);
-            
             // Register systems needed for editor functionality (Mostly drawing and editor control related systems)
             World.RegisterSystem(new Draw2DSystem());
             World.RegisterSystem(new Movement2DSystem());

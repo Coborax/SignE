@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -67,7 +68,7 @@ namespace Signe.Editor
             if (_editor.Project == null) 
                 return;
             
-            if (_editor.Levels == null) 
+            if (_editor.Levels == null)
                 return;
 
             ImGui.Begin("Levels");
@@ -104,31 +105,34 @@ namespace Signe.Editor
 
             ImGui.Begin("Level World");
 
-            ImGui.Text("Entities");
+            if (_editor.CurrentLevel != null)
+            {
+                ImGui.Text("Entities");
 
-            if (ImGui.Button("New Entity"))
-            {
-                _editor.CurrentLevel.World.AddEntity(new Entity());
-            }
-            
-            if (ImGui.Button("Delete Selected Entity"))
-            {
-                _editor.CurrentLevel.World.RemoveEntity(_editor.SelectedEntity);
-            }
-            
-            if (ImGui.BeginListBox("##EntityList", ImGui.GetContentRegionAvail()))
-            {
-                foreach (var entity in _editor.CurrentLevel.World.Entities)
+                if (ImGui.Button("New Entity"))
                 {
-                    bool isSelected = _editor.SelectedEntity == entity;
-                    if (ImGui.Selectable(entity.Id.ToString(), isSelected))
-                        _editor.SelectedEntity = entity;
-
-                    // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
-                    if (isSelected)
-                        ImGui.SetItemDefaultFocus();
+                    _editor.CurrentLevel.World.AddEntity(new Entity());
                 }
-                ImGui.EndListBox();
+            
+                if (ImGui.Button("Delete Selected Entity"))
+                {
+                    _editor.CurrentLevel.World.RemoveEntity(_editor.SelectedEntity);
+                }
+            
+                if (ImGui.BeginListBox("##EntityList", ImGui.GetContentRegionAvail()))
+                {
+                    foreach (var entity in _editor.CurrentLevel.World.Entities)
+                    {
+                        bool isSelected = _editor.SelectedEntity == entity;
+                        if (ImGui.Selectable(entity.Id.ToString(), isSelected))
+                            _editor.SelectedEntity = entity;
+
+                        // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
+                        if (isSelected)
+                            ImGui.SetItemDefaultFocus();
+                    }
+                    ImGui.EndListBox();
+                }
             }
 
             ImGui.End();
@@ -249,9 +253,11 @@ namespace Signe.Editor
         {
             foreach (var file in Directory.GetFiles(directory))
             {
-                if (ImGui.Selectable(Path.GetFileName(file)))
+                ImGui.Selectable(Path.GetFileName(file));
+                
+                if (ImGui.IsItemHovered() && ImGui.IsMouseDoubleClicked(0))
                 {
-                    ImGui.Text(Path.GetFileName(file));
+                    Process.Start("explorer", "\"" + file + "\"");
                 }
             }
             
