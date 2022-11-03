@@ -13,5 +13,10 @@ namespace SignE.ExampleGame.ECS.Components
             Target = target;
             Smooth = smooth;
         }
+
+        public void InitComponent()
+        {
+            
+        }
     }
 }

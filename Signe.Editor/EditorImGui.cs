@@ -29,6 +29,33 @@ namespace Signe.Editor
             ShowLevelWorld();
             ShowInspector();
             ShowAssetBrowser();
+            ShowNoProjectOpenView();
+        }
+
+        private void ShowNoProjectOpenView()
+        {
+            if (_editor.Project != null) return;
+
+            ImGui.Begin("No Project Open");
+            
+            ImGui.Text("No Project is open, open a project by clicking the button below!");
+            if (ImGui.Button("Open Project"))
+                ImGui.OpenPopup("Choose Project Directory");
+            
+            if (ImGui.BeginPopupModal("Choose Project Directory"))
+            {
+                var picker = FilePicker.GetFolderPicker(this, "C:/");
+                if (picker.Draw())
+                {
+                    _editor.ProjectDir = picker.CurrentFolder;
+                    _editor.LoadProject();
+                    FilePicker.RemoveFilePicker(this);
+                }
+
+                ImGui.EndPopup();
+            }
+            
+            ImGui.End();
         }
 
         private void ShowMainDockWindow()
@@ -179,7 +206,6 @@ namespace Signe.Editor
                     
                     ImGui.EndPopup();
                 }
-
                 
                 if (ImGui.BeginPopup("AddComponent"))
                 {
@@ -194,7 +220,7 @@ namespace Signe.Editor
                         {
                             if (type == typeof(SpriteComponent))
                             {
-                                ImGui.OpenPopup("AddSprite");
+                                ImGui.OpenPopup("Add Sprite");
                             }
                             else
                             {
@@ -204,13 +230,16 @@ namespace Signe.Editor
                         }
                     }
                     
-                    if (ImGui.BeginPopupModal("AddSprite"))
+                    if (ImGui.BeginPopupModal("Add Sprite"))
                     {
-                        if (ImGui.Button("Add"))
+                        
+                        var picker = FilePicker.GetFilePicker(this, Path.Combine(_editor.ProjectDir));
+                        if (picker.Draw())
                         {
-                            _editor.CurrentLevel.World.AddComponent(_editor.SelectedEntity, new SpriteComponent("Resources/cavesofgallet_tiles.png"));
-                            ImGui.CloseCurrentPopup();
+                            _editor.CurrentLevel.World.AddComponent(_editor.SelectedEntity, new SpriteComponent(picker.SelectedFile.Remove(0, _editor.ProjectDir.Length + 1)));
+                            FilePicker.RemoveFilePicker(this);
                         }
+                        
                         ImGui.EndPopup();
                     }
                     
@@ -260,7 +289,6 @@ namespace Signe.Editor
 
             ImGui.Begin("Asset Browser");
 
-            string selectedPath = "";
             if (ImGui.CollapsingHeader($"Root ({_editor.ProjectDir})"))
             {
                 ShowDirTreeNode(_editor.ProjectDir);
@@ -308,15 +336,16 @@ namespace Signe.Editor
 
         private void ShowMainMenuBar()
         {
+            var isOpen = false;
             if (ImGui.BeginMainMenuBar())
             {
                 if (ImGui.BeginMenu("Projects"))
                 {
                     if (ImGui.MenuItem("New Project"))
                         _editor.CreateNewProject();
-                    
+
                     if (ImGui.MenuItem("Open Project"))
-                        _editor.LoadProject();
+                        isOpen = true;
 
                     if (ImGui.MenuItem("Close Project"))
                         _editor.Project = null;
@@ -327,7 +356,7 @@ namespace Signe.Editor
 
                     ImGui.EndMenu();
                 }
-                
+
                 if (ImGui.BeginMenu("Levels"))
                 {
                     

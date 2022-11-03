@@ -44,6 +44,9 @@ namespace Signe.Editor
         public void LoadProject()
         {
             Project = _projectReader.ReadProject($"{ProjectDir}/project.json");
+            
+            // Change application working directory, so that we can load assest from the project
+            Directory.SetCurrentDirectory(ProjectDir);
         }
 
         public void LoadLevel(Level level)
