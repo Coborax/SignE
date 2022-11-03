@@ -53,6 +53,8 @@ namespace Signe.Editor
 
             SignE.Core.SignE.LevelManager.LoadLevel(level.Name);
             CurrentLevel.Paused = true;
+
+            SelectedEntity = null;
         }
 
         public void LoadLevelFromFile(string file)
@@ -73,6 +75,7 @@ namespace Signe.Editor
             //TODO: Show prompt to save when closing instead of just saving
             SaveCurrentLevel();
             SignE.Core.SignE.LevelManager.RemoveLevel(CurrentLevel);
+            SelectedEntity = null;
         }
     }
 }

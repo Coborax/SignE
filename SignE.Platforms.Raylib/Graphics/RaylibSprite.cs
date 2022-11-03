@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using Newtonsoft.Json;
+using Raylib_cs;
 using SignE.Core.Graphics;
 
 namespace SignE.Platforms.RayLib.Graphics
@@ -14,9 +15,11 @@ namespace SignE.Platforms.RayLib.Graphics
         public float TileHeight { get; set; }
 
         public Texture2D Texture2D { get; }
-        
+
+        [JsonConstructor]
         public RaylibSprite(string path)
         {
+            Path = path;
             Texture2D = Raylib.LoadTexture(path);
             Width = Texture2D.width;
             Height = Texture2D.height;
@@ -24,6 +27,7 @@ namespace SignE.Platforms.RayLib.Graphics
         
         public RaylibSprite(string path, float tileWidth, float tileHeight)
         {
+            Path = path;
             Texture2D = Raylib.LoadTexture(path);
             Width = Texture2D.width;
             Height = Texture2D.height;

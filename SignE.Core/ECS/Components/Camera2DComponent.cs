@@ -2,6 +2,9 @@
 {
     public class Camera2DComponent : IComponent
     {
-        
+        public void InitComponent()
+        {
+            
+        }
     }   
 }

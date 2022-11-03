@@ -16,5 +16,9 @@ namespace SignE.Core.ECS.Components
         
         public int Width { get; set; }
         public int Height { get; set; }
+        public void InitComponent()
+        {
+            
+        }
     }
 }

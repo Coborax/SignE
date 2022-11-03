@@ -12,6 +12,7 @@ namespace SignE.Core.ECS
         public void AddComponent(IComponent component)
         {
             _components.Add(component);
+            component.InitComponent();
         }
         
         public bool HasComponent<T>()

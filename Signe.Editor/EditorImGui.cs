@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Reflection;
 using ImGuiNET;
 using SignE.Core.ECS;
+using SignE.Core.ECS.Components;
 using SignE.Core.Graphics;
 using SignE.Runner.Models;
 using IComponent = SignE.Core.ECS.IComponent;
@@ -21,7 +22,7 @@ namespace Signe.Editor
         public void SubmitUi()
         {
             ShowMainMenuBar();
-
+            
             ShowMainDockWindow();
             ShowProjectWindow();
             ShowLevelsWindow();
@@ -178,6 +179,7 @@ namespace Signe.Editor
                     
                     ImGui.EndPopup();
                 }
+
                 
                 if (ImGui.BeginPopup("AddComponent"))
                 {
@@ -190,14 +192,32 @@ namespace Signe.Editor
                     {
                         if (ImGui.Button(type.Name))
                         {
-                            _editor.CurrentLevel.World.AddComponent(_editor.SelectedEntity, (IComponent)Activator.CreateInstance(type));
+                            if (type == typeof(SpriteComponent))
+                            {
+                                ImGui.OpenPopup("AddSprite");
+                            }
+                            else
+                            {
+                                _editor.CurrentLevel.World.AddComponent(_editor.SelectedEntity, (IComponent)Activator.CreateInstance(type));
+                                ImGui.CloseCurrentPopup();
+                            }
+                        }
+                    }
+                    
+                    if (ImGui.BeginPopupModal("AddSprite"))
+                    {
+                        if (ImGui.Button("Add"))
+                        {
+                            _editor.CurrentLevel.World.AddComponent(_editor.SelectedEntity, new SpriteComponent("Resources/cavesofgallet_tiles.png"));
                             ImGui.CloseCurrentPopup();
                         }
+                        ImGui.EndPopup();
                     }
                     
                     ImGui.EndPopup();
                 }
-                
+
+
                 ImGui.Separator();
 
                 foreach (var component in _editor.SelectedEntity.GetComponents())
@@ -209,20 +229,20 @@ namespace Signe.Editor
                     foreach (var prop in props)
                     {
                         var value = prop.GetValue(component);
-                        if (value is float f)
+                        switch (value)
                         {
-                            ImGui.DragFloat(prop.Name, ref f);
-                            prop.SetValue(component, f);
-                        }
-                        else if (value is int i)
-                        {
-                            ImGui.DragInt(prop.Name, ref i);
-                            prop.SetValue(component, i);
-                        }
-                        else if (value is bool b)
-                        {
-                            ImGui.Checkbox(prop.Name, ref b);
-                            prop.SetValue(component, b);
+                            case float f:
+                                ImGui.DragFloat(prop.Name, ref f);
+                                prop.SetValue(component, f);
+                                break;
+                            case int i:
+                                ImGui.DragInt(prop.Name, ref i);
+                                prop.SetValue(component, i);
+                                break;
+                            case bool b:
+                                ImGui.Checkbox(prop.Name, ref b);
+                                prop.SetValue(component, b);
+                                break;
                         }
                     }
 

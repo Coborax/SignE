@@ -13,5 +13,9 @@ namespace SignE.Core.ECS.Components
         {
             Radius = r;
         }
+
+        public void InitComponent()
+        {
+        }
     }
 }

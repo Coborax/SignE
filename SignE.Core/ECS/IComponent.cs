@@ -1,4 +1,7 @@
 ﻿namespace SignE.Core.ECS
 {
-    public interface IComponent { }
+    public interface IComponent
+    {
+        void InitComponent();
+    }
 }
