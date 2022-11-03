@@ -319,7 +319,7 @@ namespace Signe.Editor
                         _editor.SaveCurrentLevel();
                     
                     if (ImGui.MenuItem("Close Current Level"))
-                        _editor.SaveCurrentLevel();
+                        _editor.CloseCurrentLevel();
                     
                     ImGui.EndMenu();
                 }

@@ -67,5 +67,12 @@ namespace Signe.Editor
         {
             _projectWriter.WriteLevel(CurrentLevel, CurrentLevelPath);
         }
+
+        public void CloseCurrentLevel()
+        {
+            //TODO: Show prompt to save when closing instead of just saving
+            SaveCurrentLevel();
+            SignE.Core.SignE.LevelManager.RemoveLevel(CurrentLevel);
+        }
     }
 }

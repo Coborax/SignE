@@ -29,6 +29,10 @@ namespace SignE.Core.Levels
         {
             return _levels.Values.ToList();
         }
-        
+
+        public void RemoveLevel(Level currentLevel)
+        {
+            _levels.Remove(currentLevel.Name);
+        }
     }
 }
