@@ -24,6 +24,11 @@ namespace SignE.Runner
                 world.AddEntity(entity);
             }
 
+            foreach (var gameSystem in LevelModel.GameSystems)
+            {
+                world.RegisterSystem(gameSystem);
+            }
+
             World = world;
         }
     }

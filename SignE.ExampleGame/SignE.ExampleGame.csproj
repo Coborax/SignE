@@ -8,12 +8,25 @@
     <ItemGroup>
       <ProjectReference Include="..\SignE.Core\SignE.Core.csproj" />
       <ProjectReference Include="..\SignE.Platforms.Raylib\SignE.Platforms.Raylib.csproj" />
+      <ProjectReference Include="..\SignE.Runner\SignE.Runner.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Include="Resources\**\*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="project.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="test.level">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="test2.level">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

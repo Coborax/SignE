@@ -7,5 +7,6 @@ namespace SignE.Runner.Models
     {
         public string Name { get; set; }
         public List<EntityModel> Entities { get; set; }
+        public List<GameSystem> GameSystems { get; set; }
     }
 }

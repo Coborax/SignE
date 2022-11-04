@@ -22,7 +22,8 @@ namespace SignE.Runner.Writers
             var model = new LevelModel
             {
                 Name = level.Name,
-                Entities = GetEntitiesFromLevel(level)
+                Entities = GetEntitiesFromLevel(level),
+                GameSystems = level.World.GetAllSystems()
             };
 
             var settings = new JsonSerializerSettings();

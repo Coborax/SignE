@@ -11,12 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Resources\cavesofgallet_tiles.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="ImGui.NET" Version="1.88.0" />
     </ItemGroup>
 

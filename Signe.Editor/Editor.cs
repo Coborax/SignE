@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using SignE.Core.ECS;
 using SignE.Core.Levels;
-using SignE.Runner.Models;
 using SignE.Runner.Readers;
 using SignE.Runner.Writers;
+using Project = SignE.Runner.Models.Project;
 
 namespace Signe.Editor
 {
@@ -49,6 +50,11 @@ namespace Signe.Editor
             Directory.SetCurrentDirectory(ProjectDir);
         }
 
+        public void SaveProject()
+        {
+            _projectWriter.WriteProject(Project, $"{ProjectDir}/project.json");
+        }
+
         public void LoadLevel(Level level)
         {
             if(CurrentLevel == level)
@@ -79,6 +85,16 @@ namespace Signe.Editor
             SaveCurrentLevel();
             SignE.Core.SignE.LevelManager.RemoveLevel(CurrentLevel);
             SelectedEntity = null;
+        }
+
+        public void RunGame()
+        {
+            var p = new Process(); 
+            p.StartInfo = new ProcessStartInfo("dotnet")
+            {
+                Arguments = $@"run"
+            };
+            p.Start();
         }
     }
 }

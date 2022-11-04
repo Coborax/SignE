@@ -16,14 +16,7 @@ namespace SignE.ExampleGame
         static void Main(string[] args)
         {
             Game game = new RaylibGame();
-            World world = new World();
-            
-            game.Init(1280, 720, "SignE Example Game", world);
-            
-            Core.SignE.LevelManager.AddLevel(new LdtkLevel("Resources/ExampleWorld.ldtk", "Level_0"));
-            Core.SignE.LevelManager.LoadLevel("Level_0");
-            Core.SignE.Graphics.Camera2D.Zoom = 3;    
-            
+            Runner.Runner.SetupGame(game);
             game.Run();
         }
     }

@@ -65,5 +65,10 @@ namespace SignE.Core.ECS
                 gameSystem.DrawSystem();
             }
         }
+
+        public List<GameSystem> GetAllSystems()
+        {
+            return _systems;
+        }
     }
 }

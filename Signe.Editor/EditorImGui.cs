@@ -347,8 +347,8 @@ namespace Signe.Editor
                     if (ImGui.MenuItem("Open Project"))
                         isOpen = true;
 
-                    if (ImGui.MenuItem("Close Project"))
-                        _editor.Project = null;
+                    if (ImGui.MenuItem("Save Project"))
+                        _editor.SaveProject();
                     
                     ImGui.Spacing();
                     
@@ -369,6 +369,15 @@ namespace Signe.Editor
                     
                     if (ImGui.MenuItem("Close Current Level"))
                         _editor.CloseCurrentLevel();
+                    
+                    ImGui.EndMenu();
+                }
+                
+                if (ImGui.BeginMenu("Build"))
+                {
+
+                    if (ImGui.MenuItem("Build & Run Game"))
+                        _editor.RunGame();
                     
                     ImGui.EndMenu();
                 }
