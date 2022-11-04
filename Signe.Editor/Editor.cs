@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using SignE.Core.ECS;
 using SignE.Core.Levels;
+using SignE.Runner;
 using SignE.Runner.Readers;
 using SignE.Runner.Writers;
 using Project = SignE.Runner.Models.Project;
@@ -20,7 +21,7 @@ namespace Signe.Editor
         public Entity SelectedEntity { get; set; }
 
         public string ProjectDir { get; set; } = "";
-        public string CurrentLevelPath => ((EditorLevel) SignE.Core.SignE.LevelManager.CurrentLevel).File;
+        public string CurrentLevelPath => ((JsonLevel) SignE.Core.SignE.LevelManager.CurrentLevel).File;
 
         private IProjectWriter _projectWriter = new JsonProjectWriter();
         private IProjectReader _projectReader = new JsonProjectReader();
@@ -68,7 +69,7 @@ namespace Signe.Editor
 
         public void LoadLevelFromFile(string file)
         {
-            var level = _projectReader.ReadLevel<EditorLevel>(file);
+            var level = _projectReader.ReadLevel<JsonLevel>(file);
             SignE.Core.SignE.LevelManager.AddLevel(level);
             
             LoadLevel(level);

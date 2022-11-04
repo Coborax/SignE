@@ -30,19 +30,4 @@ namespace Signe.Editor
             game.Run();
         }
     }
-
-    class EditorLevel : JsonLevel
-    {
-        public override string Name { get; set; }
-        public override void LoadLevel()
-        {
-            base.LoadLevel();
-            
-            //TODO: Move to Editor GUI
-            // Register systems needed for editor functionality (Mostly drawing and editor control related systems)
-            World.RegisterSystem(new Draw2DSystem());
-            World.RegisterSystem(new Movement2DSystem());
-            World.RegisterSystem(new YSortSystem());
-        }
-    }
 }
