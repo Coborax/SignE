@@ -19,7 +19,7 @@ namespace Signe.Editor
         
         public Entity SelectedEntity { get; set; }
 
-        public string ProjectDir { get; set; } = @"C:\Repos\SignE\SignE.ExampleGame";
+        public string ProjectDir { get; set; } = "";
         public string CurrentLevelPath => ((EditorLevel) SignE.Core.SignE.LevelManager.CurrentLevel).File;
 
         private IProjectWriter _projectWriter = new JsonProjectWriter();

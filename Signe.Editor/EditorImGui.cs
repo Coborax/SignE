@@ -88,6 +88,41 @@ namespace Signe.Editor
 
             ImGui.Begin("Project Settings");
 
+            var projectName = _editor.Project.ProjectName;
+            ImGui.InputText("Project Name", ref projectName, 100);
+            _editor.Project.ProjectName = projectName;
+
+            var wW = _editor.Project.WindowWidth;
+            ImGui.InputInt("Window Width", ref wW);
+            _editor.Project.WindowWidth = wW;
+            
+            var wH = _editor.Project.WindowHeight;
+            ImGui.InputInt("Window Height", ref wH);
+            _editor.Project.WindowHeight = wH;
+            
+            ImGui.Spacing();
+            
+            ImGui.Text("Levels");
+            ImGui.Separator();
+
+            string selectedProjectLevel = "";
+            if (ImGui.BeginListBox("##ProjectLevelList", new Vector2(ImGui.GetContentRegionAvail().X, 100)))
+            {
+                foreach (var projectLevel in _editor.Project.ProjectLevels)
+                {
+                    bool isSelected = selectedProjectLevel == projectLevel;
+                    if (ImGui.Selectable(projectLevel, isSelected))
+                        selectedProjectLevel = projectLevel;
+
+                    // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
+                    if (isSelected)
+                        ImGui.SetItemDefaultFocus();
+                }
+                ImGui.EndListBox();
+            }
+            
+            ImGui.Button("Add Level to Project");
+            
             ImGui.End();
         }
 
