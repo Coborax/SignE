@@ -52,7 +52,7 @@ namespace SignE.Core.Levels.Ldtk
         {
             foreach (var tile in tiles)
             {
-                var tileEntity = new Entity();
+                var tileEntity = new Entity(Guid.NewGuid());
 
                 bool flipX = tile.F is 1 or 3  ? true : false;
                 bool flipY = tile.F is 2 or 3 ? true : false;

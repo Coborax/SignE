@@ -16,8 +16,14 @@ namespace SignE.ExampleGame.ECS.Systems
                 var follow = entity.GetComponent<SmoothFollowComponent>();
                 var pos = entity.GetComponent<Position2DComponent>();
 
-                pos.X = Math.Lerp(pos.X, follow.Target.X, follow.Smooth);
-                pos.Y = Math.Lerp(pos.Y, follow.Target.Y, follow.Smooth);
+                //TODO: Make it easier to get entity with Id, or make component entities automatically replace with entities in world for direct use
+                var target = Core.SignE.LevelManager.CurrentLevel.World.Entities.Find(e => e.Id == follow.Target.Id);
+                if (target == null)
+                    continue;
+                
+                var targetPos = target.GetComponent<Position2DComponent>();
+                pos.X = Math.Lerp(pos.X, targetPos.X, follow.Smooth);
+                pos.Y = Math.Lerp(pos.Y, targetPos.Y, follow.Smooth);
             }
         }
 

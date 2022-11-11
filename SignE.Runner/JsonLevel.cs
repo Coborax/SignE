@@ -16,7 +16,7 @@ namespace SignE.Runner
 
             foreach (var entityModel in LevelModel.Entities)
             {
-                var entity = new Entity();
+                var entity = new Entity(entityModel.Id);
                 foreach (var component in entityModel.Components)
                 {
                     entity.AddComponent(component);

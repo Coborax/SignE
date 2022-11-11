@@ -9,6 +9,7 @@ using System.Reflection;
 using ImGuiNET;
 using SignE.Core.ECS;
 using SignE.Core.ECS.Components;
+using SignE.Core.Extensions;
 using SignE.Core.Graphics;
 using SignE.Runner.Models;
 using IComponent = SignE.Core.ECS.IComponent;
@@ -22,7 +23,7 @@ namespace Signe.Editor
         public void SubmitUi()
         {
             ShowMainMenuBar();
-            
+        
             ShowMainDockWindow();
             ShowProjectWindow();
             ShowLevelsWindow();
@@ -174,7 +175,7 @@ namespace Signe.Editor
 
                 if (ImGui.Button("New Entity"))
                 {
-                    _editor.CurrentLevel.World.AddEntity(new Entity());
+                    _editor.CurrentLevel.World.AddEntity(new Entity(Guid.NewGuid()));
                 }
             
                 if (ImGui.Button("Delete Selected Entity"))
@@ -186,7 +187,7 @@ namespace Signe.Editor
                 {
                     foreach (var entity in _editor.CurrentLevel.World.Entities)
                     {
-                        bool isSelected = _editor.SelectedEntity == entity;
+                        var isSelected = _editor.SelectedEntity == entity;
                         if (ImGui.Selectable(entity.Id.ToString(), isSelected))
                             _editor.SelectedEntity = entity;
 
@@ -244,12 +245,7 @@ namespace Signe.Editor
                 
                 if (ImGui.BeginPopup("AddComponent"))
                 {
-                    var t = typeof(IComponent);
-                    var types = AppDomain.CurrentDomain.GetAssemblies()
-                        .SelectMany(s => s.GetTypes())
-                        .Where(p => t.IsAssignableFrom(p));
-                    
-                    foreach (var type in types)
+                    foreach (var type in _editor.ComponentTypes)
                     {
                         if (ImGui.Button(type.Name))
                         {
@@ -308,7 +304,24 @@ namespace Signe.Editor
                                 prop.SetValue(component, b);
                                 break;
                         }
+
+                        if (prop.PropertyType == typeof(Entity))
+                        {
+                            var selectedEntity = (Entity)prop.GetValue(component);
+                            if (ImGui.BeginCombo(prop.Name, "Select Entity with Position 2D Component"))
+                            {
+                                var entities = _editor.CurrentLevel.World.Entities;
+                                foreach (var entity in entities)
+                                {
+                                    var selected = selectedEntity != null && selectedEntity == entity;
+                                    if (ImGui.Selectable(entity.Id.ToString(), selected))
+                                        prop.SetValue(component, entity);
+                                }
+                                ImGui.EndCombo();
+                            }
+                        }
                     }
+                    
 
                     ImGui.Spacing();
                 }
@@ -410,7 +423,9 @@ namespace Signe.Editor
                 
                 if (ImGui.BeginMenu("Build"))
                 {
-
+                    if (ImGui.MenuItem("Build Game"))
+                        _editor.BuildGame();
+                    
                     if (ImGui.MenuItem("Build & Run Game"))
                         _editor.RunGame();
                     

@@ -16,6 +16,7 @@
 
         public float Y { get; set; }
         public float X { get; set; }
+        
         public void InitComponent()
         {
             

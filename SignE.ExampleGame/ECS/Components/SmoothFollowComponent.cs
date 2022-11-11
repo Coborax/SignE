@@ -5,14 +5,9 @@ namespace SignE.ExampleGame.ECS.Components
 {
     public class SmoothFollowComponent : IComponent
     {
-        public Position2DComponent Target { get; set; }
+        public Entity Target { get; set; }
         public float Smooth { get; set; }
-
-        public SmoothFollowComponent(Position2DComponent target, float smooth)
-        {
-            Target = target;
-            Smooth = smooth;
-        }
+        public float NewPropertyHihi { get; set; }
 
         public void InitComponent()
         {

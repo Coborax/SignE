@@ -5,7 +5,7 @@ using SignE.Runner.Readers;
 
 namespace SignE.Runner
 {
-    public static class Runner
+    public static class ProjectRunner
     {
         private static readonly IProjectReader ProjectReader = new JsonProjectReader();
         

@@ -27,6 +27,7 @@ namespace SignE.Runner.Writers
             };
 
             var settings = new JsonSerializerSettings();
+            settings.Formatting = Formatting.Indented;
             settings.TypeNameHandling = TypeNameHandling.Auto;
             
             var json = JsonConvert.SerializeObject(model, typeof(IComponent), settings);

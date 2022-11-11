@@ -7,7 +7,7 @@ namespace SignE.Platforms.RayLib.Input
 {
     public class RaylibInput : IInput
     {
-        public bool IsInputActive { get; set; }
+        public bool IsInputActive { get; set; } = true;
 
         public bool IsKeyDown(Key key)
         {

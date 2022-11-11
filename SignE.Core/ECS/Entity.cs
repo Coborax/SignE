@@ -4,11 +4,16 @@ using System.Linq;
 
 namespace SignE.Core.ECS
 {
-    public class Entity
+    public class Entity : IComparable
     {
-        public Guid Id { get; } = Guid.NewGuid();
+        public Guid Id { get; }
         private List<IComponent> _components = new List<IComponent>();
 
+        public Entity(Guid id)
+        {
+            Id = id;
+        }
+        
         public void AddComponent(IComponent component)
         {
             _components.Add(component);
@@ -33,6 +38,12 @@ namespace SignE.Core.ECS
         public void RemoveComponent(IComponent component)
         {
             _components.Remove(component);
+        }
+
+        public int CompareTo(object obj)
+        {
+            var e = (Entity) obj;
+            return e.Id.CompareTo(this.Id);
         }
     }
 }

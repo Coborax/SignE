@@ -1,1 +1,92 @@
-{"$type":"SignE.Runner.Models.LevelModel, SignE.Runner","Name":"Test_Level","Entities":[{"Id":"89098cb6-a63b-49b7-8b02-5bad8fa5a7a3","Components":[{"$type":"SignE.Core.ECS.Components.Position2DComponent, SignE.Core","Y":0.0,"X":0.0},{"$type":"SignE.Core.ECS.Components.SpriteComponent, SignE.Core","Path":"Resources/cavesofgallet_tiles.png","Depth":0.0,"TileX":0.0,"TileY":0.0,"TileW":0.0,"TileH":0.0,"FlipX":false,"FlipY":false,"IsSpritesheet":false}]},{"Id":"b2aa831b-8dbd-4044-b0ce-18ba2166387e","Components":[{"$type":"SignE.Core.ECS.Components.Position2DComponent, SignE.Core","Y":21.0,"X":138.0},{"$type":"SignE.Core.ECS.Components.SpriteComponent, SignE.Core","Path":"Resources\\Tileset.png","Depth":0.0,"TileX":0.0,"TileY":0.0,"TileW":0.0,"TileH":0.0,"FlipX":false,"FlipY":false,"IsSpritesheet":false},{"$type":"SignE.Core.ECS.Components.Movement2DComponent, SignE.Core","Speed":50.0}]}],"GameSystems":[{"$type":"SignE.Core.ECS.Systems.Draw2DSystem, SignE.Core"},{"$type":"SignE.Core.ECS.Systems.Movement2DSystem, SignE.Core"},{"$type":"SignE.Core.ECS.Systems.YSortSystem, SignE.Core"}]}
+{
+  "$type": "SignE.Runner.Models.LevelModel, SignE.Runner",
+  "Name": "Test_Level",
+  "Entities": [
+    {
+      "Id": "84cf07cd-d35a-4210-974e-4043c68b1fe0",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Camera2DComponent, SignE.Core"
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 100.0,
+          "X": 100.0
+        },
+        {
+          "$type": "SignE.ExampleGame.ECS.Components.SmoothFollowComponent, SignE.ExampleGame",
+          "Target": {
+            "Id": "792445e9-256a-440e-a790-528923bcc1a8"
+          },
+          "Smooth": 0.001,
+          "NewPropertyHihi": 0.0
+        }
+      ]
+    },
+    {
+      "Id": "19225804-a2af-4714-b963-52c915edbd03",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Movement2DComponent, SignE.Core",
+          "Speed": 100.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.SpriteComponent, SignE.Core",
+          "Path": "Resources\\player.png",
+          "Depth": 0.0,
+          "TileX": 0.0,
+          "TileY": 0.0,
+          "TileW": 0.0,
+          "TileH": 0.0,
+          "FlipX": false,
+          "FlipY": false,
+          "IsSpritesheet": false
+        }
+      ]
+    },
+    {
+      "Id": "792445e9-256a-440e-a790-528923bcc1a8",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 4.0,
+          "X": 144.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.SpriteComponent, SignE.Core",
+          "Path": "Resources\\cavesofgallet_tiles.png",
+          "Depth": 0.0,
+          "TileX": 0.0,
+          "TileY": 0.0,
+          "TileW": 0.0,
+          "TileH": 0.0,
+          "FlipX": false,
+          "FlipY": false,
+          "IsSpritesheet": false
+        }
+      ]
+    }
+  ],
+  "GameSystems": [
+    {
+      "$type": "SignE.Core.ECS.Systems.Draw2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Movement2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.YSortSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Camera2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.ExampleGame.ECS.Systems.SmoothFollowSystem, SignE.ExampleGame"
+    }
+  ]
+}

@@ -1,1 +1,1 @@
-{"ProjectName":"SignE Engine - Example Game","WindowWidth":1280,"WindowHeight":720,"ProjectLevels":["test.level","test2.level"],"StartupLevel":"Test_Level_2"}
+{"ProjectName":"Mit Mega Seje Spil!!","WindowWidth":1920,"WindowHeight":1080,"ProjectLevels":["test.level","test2.level"],"StartupLevel":"Test_Level","AssemblyPath": "bin/Debug/net6.0/SignE.ExampleGame.dll"}

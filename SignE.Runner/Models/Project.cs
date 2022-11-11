@@ -11,5 +11,7 @@ namespace SignE.Runner.Models
 
         public List<string> ProjectLevels { get; set; } = new List<string>();
         public string StartupLevel { get; set; }
+
+        public string AssemblyPath { get; set; }
     }
 }
