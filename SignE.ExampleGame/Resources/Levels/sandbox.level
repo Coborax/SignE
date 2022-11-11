@@ -1,0 +1,150 @@
+{
+  "$type": "SignE.Runner.Models.LevelModel, SignE.Runner",
+  "Name": "sandbox",
+  "Entities": [
+    {
+      "Id": "1c870102-4b69-426b-9377-e9e0dd6281c1",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.SpriteComponent, SignE.Core",
+          "Path": "Resources\\Sprites\\Character\\blue\\char_blue_1.png",
+          "Depth": 0.0,
+          "TileX": 0.0,
+          "TileY": 0.0,
+          "TileW": 56.0,
+          "TileH": 56.0,
+          "FlipX": false,
+          "FlipY": false,
+          "IsSpritesheet": true
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Animator2DComponent, SignE.Core",
+          "Timer": 0.0,
+          "CurrentFrame": null,
+          "CurrentAnimation": null,
+          "Animations": [
+            {
+              "Frames": [
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 0.0,
+                  "TileY": 0.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 1.0,
+                  "TileY": 0.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 2.0,
+                  "TileY": 0.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 3.0,
+                  "TileY": 0.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 4.0,
+                  "TileY": 0.0,
+                  "FrameTime": 0.2
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 5.0,
+                  "TileY": 0.0,
+                  "FrameTime": 0.2
+                }
+              ]
+            },
+            {
+              "Frames": [
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 0.0,
+                  "TileY": 1.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 1.0,
+                  "TileY": 0.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 2.0,
+                  "TileY": 1.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 3.0,
+                  "TileY": 1.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 4.0,
+                  "TileY": 1.0,
+                  "FrameTime": 0.2
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 5.0,
+                  "TileY": 1.0,
+                  "FrameTime": 0.2
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 6.0,
+                  "TileY": 1.0,
+                  "FrameTime": 0.2
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 7.0,
+                  "TileY": 1.0,
+                  "FrameTime": 0.2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "GameSystems": [
+    {
+      "$type": "SignE.Core.ECS.Systems.Draw2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Animator2DSystem, SignE.Core"
+    }
+  ]
+}

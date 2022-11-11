@@ -337,9 +337,9 @@ namespace Signe.Editor
 
             ImGui.Begin("Asset Browser");
 
-            if (ImGui.CollapsingHeader($"Root ({_editor.ProjectDir})"))
+            if (ImGui.CollapsingHeader($"Resources"))
             {
-                ShowDirTreeNode(_editor.ProjectDir);
+                ShowDirTreeNode($"{_editor.ProjectDir}/Resources");
             }
 
             ImGui.End();
