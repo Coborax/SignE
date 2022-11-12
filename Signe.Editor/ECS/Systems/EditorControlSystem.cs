@@ -22,6 +22,11 @@ namespace Signe.Editor.ECS.Systems
             camera.Y -= dy / camera.Zoom;
         }
 
+        public override void LateUpdateSystem()
+        {
+            
+        }
+
         public override void DrawSystem()
         {
             

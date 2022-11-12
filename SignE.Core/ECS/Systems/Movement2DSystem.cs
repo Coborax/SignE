@@ -1,5 +1,6 @@
 using System.Linq;
 using SignE.Core.ECS.Components;
+using SignE.Core.ECS.Components.Physics;
 using SignE.Core.Extensions;
 using SignE.Core.Input;
 
@@ -11,27 +12,25 @@ namespace SignE.Core.ECS.Systems
         {
             foreach (var entity in Entities)
             {
-                var pos = entity.GetComponent<Position2DComponent>();
+                var mover = entity.GetComponent<PhysicsMoverComponent>();
                 var movement = entity.GetComponent<Movement2DComponent>();
 
-                movement.VelX = 0;
-                movement.VelY = 0;
-                
-                if (SignE.Input.IsKeyDown(Key.W)) 
-                    movement.VelY  = -(movement.Speed * SignE.Graphics.DeltaTime);
-                
-                if (SignE.Input.IsKeyDown(Key.S)) 
-                    movement.VelY  = (movement.Speed * SignE.Graphics.DeltaTime);
-                
-                if (SignE.Input.IsKeyDown(Key.D))
-                    movement.VelX  = (movement.Speed * SignE.Graphics.DeltaTime);
-                
-                if (SignE.Input.IsKeyDown(Key.A))
-                    movement.VelX  = -(movement.Speed * SignE.Graphics.DeltaTime);
+                mover.VelX = 0;
 
-                pos.X += movement.VelX;
-                pos.Y += movement.VelY;
+                if (SignE.Input.IsKeyDown(Key.D))
+                    mover.VelX = movement.Speed;
+
+                if (SignE.Input.IsKeyDown(Key.A))
+                    mover.VelX = -movement.Speed;
+                
+                if (SignE.Input.IsKeyPressed(Key.SPACE))
+                    mover.VelY -= movement.JumpSpeed;
             }
+        }
+
+        public override void LateUpdateSystem()
+        {
+            
         }
 
         public override void DrawSystem()
@@ -42,7 +41,7 @@ namespace SignE.Core.ECS.Systems
         public override void GetEntities(World world)
         {
             Entities = world.Entities
-                .WithComponent<Position2DComponent>()
+                .WithComponent<PhysicsMoverComponent>()
                 .WithComponent<Movement2DComponent>()
                 .ToList();
         }

@@ -16,6 +16,11 @@ namespace SignE.Core.ECS.Systems
             SignE.Graphics.Camera2D.Y = pos.Y;
         }
 
+        public override void LateUpdateSystem()
+        {
+            
+        }
+
         public override void DrawSystem()
         {
         

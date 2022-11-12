@@ -40,6 +40,11 @@ namespace SignE.Core.ECS.Systems
             }
         }
 
+        public override void LateUpdateSystem()
+        {
+            
+        }
+
         public override void DrawSystem()
         {
             

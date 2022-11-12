@@ -2,6 +2,7 @@
 using System.Linq;
 using SignE.Core.ECS;
 using SignE.Core.ECS.Components;
+using SignE.Core.ECS.Components.Physics;
 using SignE.Core.ECS.Systems;
 using SignE.Core.Extensions;
 using SignE.Core.Input;
@@ -16,7 +17,7 @@ public class PlayerSystem : GameSystem
         foreach (var entity in Entities)
         {
             var player = entity.GetComponent<PlayerComponent>();
-            var movement = entity.GetComponent<Movement2DComponent>();
+            var movement = entity.GetComponent<PhysicsMoverComponent>();
             var sprite = entity.GetComponent<SpriteComponent>();
             var animator = entity.GetComponent<Animator2DComponent>();
 
@@ -47,7 +48,12 @@ public class PlayerSystem : GameSystem
         }
     }
 
-    private void UpdateIdleRunning(Movement2DComponent movement, PlayerComponent player)
+    public override void LateUpdateSystem()
+    {
+        
+    }
+
+    private void UpdateIdleRunning(PhysicsMoverComponent movement, PlayerComponent player)
     {
         if (movement.VelX != 0 || movement.VelY != 0)
             player.PlayerState = PlayerState.Running;
@@ -86,7 +92,7 @@ public class PlayerSystem : GameSystem
     {
         Entities = world.Entities
             .WithComponent<SpriteComponent>()
-            .WithComponent<Movement2DComponent>()
+            .WithComponent<PhysicsMoverComponent>()
             .WithComponent<Animator2DComponent>()
             .WithComponent<PlayerComponent>().ToList();
     }

@@ -40,6 +40,9 @@ namespace SignE.Platforms.RayLib
 
                 if (Core.SignE.LevelManager.CurrentLevel != null && !Core.SignE.LevelManager.CurrentLevel.Paused)
                     Core.SignE.LevelManager.CurrentLevel.World.UpdateSystems();
+                
+                if (Core.SignE.LevelManager.CurrentLevel != null && !Core.SignE.LevelManager.CurrentLevel.Paused)
+                    Core.SignE.LevelManager.CurrentLevel.World.LateUpdateSystems();
 
                 if (RenderGameToTexture)
                 {
