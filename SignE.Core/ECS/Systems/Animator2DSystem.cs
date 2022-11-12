@@ -14,12 +14,6 @@ namespace SignE.Core.ECS.Systems
                 var sprite = entity.GetComponent<SpriteComponent>();
                 var animator = entity.GetComponent<Animator2DComponent>();
 
-                if (animator.CurrentAnimation == null)
-                {
-                    animator.CurrentAnimation = animator.Animations[1];
-                    animator.CurrentFrame = animator.CurrentAnimation.Frames[0];
-                }
-                
                 if (animator.CurrentFrame == null || animator.CurrentAnimation == null)
                     continue;
                 
@@ -28,11 +22,17 @@ namespace SignE.Core.ECS.Systems
                 {
                     animator.Timer = 0.0f;
                     var idx = animator.CurrentAnimation.Frames.IndexOf(animator.CurrentFrame);
-                    var newIdx = idx + 1 == animator.CurrentAnimation.Frames.Count ? 0 : idx + 1;
 
+                    if (idx + 1 == animator.CurrentAnimation.Frames.Count && !animator.CurrentAnimation.Loop)
+                    {
+                        animator.InvokeAnimationEnd(this);
+                        continue;
+                    }
+                    
+                    var newIdx = idx + 1 == animator.CurrentAnimation.Frames.Count ? 0 : idx + 1;
                     animator.CurrentFrame = animator.CurrentAnimation.Frames[newIdx];
                 }
-                
+
                 sprite.TileX = animator.CurrentFrame.TileX;
                 sprite.TileY = animator.CurrentFrame.TileY;
                 sprite.FlipX = animator.CurrentFrame.FlipX;

@@ -63,16 +63,78 @@
                   "FlipY": false,
                   "TileX": 4.0,
                   "TileY": 0.0,
-                  "FrameTime": 0.2
+                  "FrameTime": 0.1
                 },
                 {
                   "FlipX": false,
                   "FlipY": false,
                   "TileX": 5.0,
                   "TileY": 0.0,
-                  "FrameTime": 0.2
+                  "FrameTime": 0.1
                 }
-              ]
+              ],
+              "Loop": true
+            },
+            {
+              "Frames": [
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 0.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 1.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 2.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 3.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 4.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 5.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 6.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                },
+                {
+                  "FlipX": false,
+                  "FlipY": false,
+                  "TileX": 7.0,
+                  "TileY": 2.0,
+                  "FrameTime": 0.1
+                }
+              ],
+              "Loop": true
             },
             {
               "Frames": [
@@ -87,7 +149,7 @@
                   "FlipX": false,
                   "FlipY": false,
                   "TileX": 1.0,
-                  "TileY": 0.0,
+                  "TileY": 1.0,
                   "FrameTime": 0.1
                 },
                 {
@@ -109,32 +171,132 @@
                   "FlipY": false,
                   "TileX": 4.0,
                   "TileY": 1.0,
-                  "FrameTime": 0.2
+                  "FrameTime": 0.1
                 },
                 {
                   "FlipX": false,
                   "FlipY": false,
                   "TileX": 5.0,
                   "TileY": 1.0,
-                  "FrameTime": 0.2
+                  "FrameTime": 0.1
                 },
                 {
                   "FlipX": false,
                   "FlipY": false,
                   "TileX": 6.0,
                   "TileY": 1.0,
-                  "FrameTime": 0.2
+                  "FrameTime": 0.1
                 },
                 {
                   "FlipX": false,
                   "FlipY": false,
                   "TileX": 7.0,
                   "TileY": 1.0,
-                  "FrameTime": 0.2
+                  "FrameTime": 0.1
                 }
-              ]
+              ],
+              "Loop": false
             }
           ]
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Movement2DComponent, SignE.Core",
+          "Speed": 100.0,
+          "VelX": 0.0,
+          "VelY": 0.0
+        },
+        {
+          "$type": "SignE.ExampleGame.ECS.Components.PlayerComponent, SignE.ExampleGame",
+          "PlayerState": 0,
+          "Health": 100
+        }
+      ]
+    },
+    {
+      "Id": "ae567330-5e5c-47d0-a5ea-607dc805d7c5",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.SpriteComponent, SignE.Core",
+          "Path": "Resources\\Sprites\\Env\\background\\background_layer_1.png",
+          "Depth": -10.0,
+          "TileX": 0.0,
+          "TileY": 0.0,
+          "TileW": 0.0,
+          "TileH": 0.0,
+          "FlipX": false,
+          "FlipY": false,
+          "IsSpritesheet": false
+        }
+      ]
+    },
+    {
+      "Id": "8a85f9ad-3a1a-4449-8d52-1ff8bc7e452e",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.SpriteComponent, SignE.Core",
+          "Path": "Resources\\Sprites\\Env\\background\\background_layer_2.png",
+          "Depth": -9.0,
+          "TileX": 0.0,
+          "TileY": 0.0,
+          "TileW": 0.0,
+          "TileH": 0.0,
+          "FlipX": false,
+          "FlipY": false,
+          "IsSpritesheet": false
+        }
+      ]
+    },
+    {
+      "Id": "7c326494-c9b3-488e-8c91-a7cc33763443",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.SpriteComponent, SignE.Core",
+          "Path": "Resources\\Sprites\\Env\\background\\background_layer_3.png",
+          "Depth": -8.0,
+          "TileX": 0.0,
+          "TileY": 0.0,
+          "TileW": 0.0,
+          "TileH": 0.0,
+          "FlipX": false,
+          "FlipY": false,
+          "IsSpritesheet": false
+        }
+      ]
+    },
+    {
+      "Id": "8685dab3-f29b-41f0-9cae-2ea1f87f8c28",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 252.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.SpriteComponent, SignE.Core",
+          "Path": "Resources\\Sprites\\Env\\oak_woods_tileset.png",
+          "Depth": 0.0,
+          "TileX": 0.0,
+          "TileY": 0.0,
+          "TileW": 0.0,
+          "TileH": 0.0,
+          "FlipX": false,
+          "FlipY": false,
+          "IsSpritesheet": false
         }
       ]
     }
@@ -145,6 +307,12 @@
     },
     {
       "$type": "SignE.Core.ECS.Systems.Animator2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Movement2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.ExampleGame.ECS.Systems.PlayerSystem, SignE.ExampleGame"
     }
   ]
 }
