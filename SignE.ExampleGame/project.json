@@ -1,1 +1,12 @@
-{"ProjectName":"Mit Mega Seje Spil!!","WindowWidth":1920,"WindowHeight":1080,"ProjectLevels":["test.level","test2.level"],"StartupLevel":"Test_Level","AssemblyPath": "bin/Debug/net6.0/SignE.ExampleGame.dll"}
+{
+    "ProjectName": "Platformer Game",
+    "WindowWidth": 1920,
+    "WindowHeight": 1080,
+    "ProjectLevels": [
+        "Resources/Levels/main_menu.level",
+        "Resources/Levels/sandbox.level"
+    ],
+    "StartupLevel": "sandbox",
+    "DotnetProjectPath": "",
+    "AssemblyPath": "bin/Debug/net6.0/SignE.ExampleGame.dll"
+  }

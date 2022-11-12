@@ -166,7 +166,8 @@ namespace Signe.Editor
             var p = new Process(); 
             p.StartInfo = new ProcessStartInfo("dotnet")
             {
-                Arguments = $@"run"
+                Arguments = $@"run",
+                WorkingDirectory = $"{ProjectDir}/{Project.DotnetProjectPath}"
             };
             p.Start();
         }
@@ -176,7 +177,8 @@ namespace Signe.Editor
             var p = new Process(); 
             p.StartInfo = new ProcessStartInfo("dotnet")
             {
-                Arguments = $@"build"
+                Arguments = $@"build",
+                WorkingDirectory = $"{ProjectDir}/{Project.DotnetProjectPath}"
             };
             p.Start();
         }

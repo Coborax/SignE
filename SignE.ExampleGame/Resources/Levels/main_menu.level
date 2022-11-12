@@ -1,0 +1,40 @@
+{
+  "$type": "SignE.Runner.Models.LevelModel, SignE.Runner",
+  "Name": "main_menu",
+  "Entities": [
+    {
+      "Id": "9cd249d0-c173-437b-bb78-ddc24be4d0ed",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.RectangleComponent, SignE.Core",
+          "Width": 100,
+          "Height": 100
+        }
+      ]
+    },
+    {
+      "Id": "3aa283c0-f6bb-424e-9d33-356b08a12ffb",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.CircleComponent, SignE.Core",
+          "Radius": 35.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 82.0,
+          "X": 135.0
+        }
+      ]
+    }
+  ],
+  "GameSystems": [
+    {
+      "$type": "SignE.Core.ECS.Systems.Draw2DSystem, SignE.Core"
+    }
+  ]
+}

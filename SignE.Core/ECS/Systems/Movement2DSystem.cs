@@ -12,20 +12,25 @@ namespace SignE.Core.ECS.Systems
             foreach (var entity in Entities)
             {
                 var pos = entity.GetComponent<Position2DComponent>();
-                var speed = entity.GetComponent<Movement2DComponent>().Speed;
+                var movement = entity.GetComponent<Movement2DComponent>();
+
+                movement.VelX = 0;
+                movement.VelY = 0;
                 
-                if (SignE.Input.IsKeyDown(Key.W))
-                    pos.Y -= speed * SignE.Graphics.DeltaTime;
+                if (SignE.Input.IsKeyDown(Key.W)) 
+                    movement.VelY  = -(movement.Speed * SignE.Graphics.DeltaTime);
                 
-                if (SignE.Input.IsKeyDown(Key.S))
-                    pos.Y += speed * SignE.Graphics.DeltaTime;
+                if (SignE.Input.IsKeyDown(Key.S)) 
+                    movement.VelY  = (movement.Speed * SignE.Graphics.DeltaTime);
                 
                 if (SignE.Input.IsKeyDown(Key.D))
-                    pos.X += speed * SignE.Graphics.DeltaTime;
+                    movement.VelX  = (movement.Speed * SignE.Graphics.DeltaTime);
                 
                 if (SignE.Input.IsKeyDown(Key.A))
-                    pos.X -= speed * SignE.Graphics.DeltaTime;
+                    movement.VelX  = -(movement.Speed * SignE.Graphics.DeltaTime);
 
+                pos.X += movement.VelX;
+                pos.Y += movement.VelY;
             }
         }
 
