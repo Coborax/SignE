@@ -17,10 +17,10 @@ public class QuadtreeTestSpawnerSystem : GameSystem
         {
             var rand = new Random();
             
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 200; i++)
             {
                 var entity = new Entity(Guid.NewGuid());
-                entity.AddComponent(new Position2DComponent(rand.Next(1280), rand.Next(720)));
+                entity.AddComponent(new Position2DComponent(rand.Next(-1920/2, 1920/2), rand.Next(-1080/2, 1080/2)));
                 entity.AddComponent(new AABBComponent(rand.Next(10, 50), rand.Next(10, 50)));
                 
                 _entities.Add(entity);

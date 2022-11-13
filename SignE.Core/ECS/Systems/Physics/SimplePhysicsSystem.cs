@@ -5,19 +5,20 @@ using SignE.Core.ECS;
 using SignE.Core.ECS.Components;
 using SignE.Core.ECS.Components.Physics;
 using SignE.Core.Extensions;
+using SignE.Core.Graphics;
 
 namespace SignE.Core.ECS.Systems.Physics
 {
     public class SimplePhysicsSystem : GameSystem
     {
 
-        public bool UseQuadtree { get; set; } = true;
+        public bool UseQuadtree { get; set; } = false;
         
         private List<Entity> _simpleMovers;
 
         private Quadtree _quadtree =
-            new Quadtree(0, new QuadtreeRect(new Position2DComponent(0, 0), new AABBComponent(1280, 720)));
-        
+            new Quadtree(0, new QuadtreeRect(new Position2DComponent(-1920/2, -1080/2), new AABBComponent(1920, 1080)));
+
         public override void UpdateSystem()
         {
             
@@ -35,6 +36,7 @@ namespace SignE.Core.ECS.Systems.Physics
                     _quadtree.Insert(new QuadtreeRect(pos, aabb, entity));
                 }
 
+                var closeEntities = new List<QuadtreeRect>();
                 foreach (var entity in _simpleMovers)
                 {
                     var mover = entity.GetComponent<PhysicsMoverComponent>();
@@ -55,14 +57,15 @@ namespace SignE.Core.ECS.Systems.Physics
                         Y = entityPos.Y + mover.VelY * SignE.Graphics.DeltaTime
                     };   
                     
-                    var closeEntities = new List<QuadtreeRect>();
-                    _quadtree.Retrieve(closeEntities, new QuadtreeRect(entityPos, aabb, entity));
-
+                    // Get close entities where our updated position would be
+                    closeEntities.Clear();
+                    _quadtree.Retrieve(ref closeEntities, new QuadtreeRect(new Position2DComponent{X = posX.X, Y = posY.Y}, aabb, entity));
                     foreach (var other in closeEntities)
                     {
                         if (entity == other.Entity)
                             continue;
-                        
+
+                        other.IsClose = true;
                         UpdateCollisionVelocity(posX, posY, mover, aabb, other.Entity);
                     }
                     
@@ -146,7 +149,6 @@ namespace SignE.Core.ECS.Systems.Physics
                 SignE.Graphics.DrawRectangle(pos.X, pos.Y, aabb.Width, aabb.Height, false);
             }
             
-            
         }
 
         public override void GetEntities(World world)
@@ -206,7 +208,7 @@ public class Quadtree
         var horizontalMid = _bounds.Position.Y + (_bounds.Bounds.Height / 2);
 
         var topQuadrant = rect.Position.Y < horizontalMid && rect.Position.Y + rect.Bounds.Height < horizontalMid; // Object can completely fit within the top quadrants
-        var bottomQuadrant = rect.Position.X > horizontalMid; // Object can completely fit within the bottom quadrants
+        var bottomQuadrant = rect.Position.Y > horizontalMid; // Object can completely fit within the bottom quadrants
         
         // Object can completely fit within the left quadrants
         if (rect.Position.X < verticalMid && rect.Position.X + rect.Bounds.Width < verticalMid) {
@@ -236,18 +238,17 @@ public class Quadtree
  
             if (index != -1) {
                 _nodes[index].Insert(rect);
- 
                 return;
             }
         }
  
         _objects.Add(rect);
  
-        if (_objects.Count > MaxObjects && _level < MaxLevels) {
+        if (_objects.Count == MaxObjects && _level < MaxLevels) {
             if (_nodes[0] == null) { 
-                Split(); 
+                Split();
             }
- 
+
             var i = 0;
             while (i < _objects.Count) {
                 var index = GetIndex(_objects[i]);
@@ -262,15 +263,14 @@ public class Quadtree
         }
     }
     
-    public List<QuadtreeRect> Retrieve(List<QuadtreeRect> result, QuadtreeRect rect)
+    public List<QuadtreeRect> Retrieve(ref List<QuadtreeRect> result, QuadtreeRect rect)
     {
-        int index = GetIndex(rect);
+        var index = GetIndex(rect);
         if (index != -1 && _nodes[0] != null) {
-            _nodes[index].Retrieve(result, rect);
+            _nodes[index].Retrieve(ref result, rect);
         }
  
         result.AddRange(_objects);
- 
         return result;
     }
 
@@ -280,7 +280,16 @@ public class Quadtree
             return;
         
         var rect = quadtree._bounds;
-        SignE.Core.SignE.Graphics.DrawRectangle(rect.Position.X, rect.Position.Y, rect.Bounds.Width, rect.Bounds.Height, false);
+        SignE.Core.SignE.Graphics.DrawRectangle(rect.Position.X, rect.Position.Y, rect.Bounds.Width, rect.Bounds.Height, false, Alignment.TopLeft);
+
+        foreach (var obj in quadtree._objects)
+        {
+            if (obj.IsClose)
+            {
+                SignE.Core.SignE.Graphics.DrawRectangle(obj.Position.X, obj.Position.Y, obj.Bounds.Width, obj.Bounds.Height);
+            }
+        }
+        
         foreach (var node in quadtree._nodes)
         {
             DebugDraw(node);
@@ -292,6 +301,8 @@ public class QuadtreeRect : IComparable {
     public Entity Entity { get; set; }
     public Position2DComponent Position { get; set; }
     public AABBComponent Bounds { get; set; }
+
+    public bool IsClose { get; set; } = false;
 
     public QuadtreeRect(Position2DComponent position, AABBComponent bounds)
     {

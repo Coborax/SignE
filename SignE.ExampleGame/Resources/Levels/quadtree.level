@@ -12,12 +12,12 @@
         },
         {
           "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
-          "Width": 50,
-          "Height": 50
+          "Width": 10,
+          "Height": 10
         },
         {
           "$type": "SignE.Core.ECS.Components.Movement2DComponent, SignE.Core",
-          "Speed": 100.0,
+          "Speed": 200.0,
           "JumpSpeed": 5.0
         },
         {
@@ -28,8 +28,8 @@
         },
         {
           "$type": "SignE.Core.ECS.Components.RectangleComponent, SignE.Core",
-          "Width": 50,
-          "Height": 50
+          "Width": 10,
+          "Height": 10
         }
       ]
     }

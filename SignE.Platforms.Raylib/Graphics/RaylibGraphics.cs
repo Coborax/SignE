@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using ImGuiNET;
@@ -24,12 +25,41 @@ namespace SignE.Platforms.RayLib.Graphics
                 Raylib.DrawCircleLines((int)x, (int)y, r, Color.WHITE);
         }
 
-        public void DrawRectangle(float x, float y, int w, int h, bool fill = true)
+        public void DrawRectangle(float x, float y, int w, int h, bool fill = true, Alignment alignment = Alignment.Center)
         {
+            var drawX = 0;
+            var drawY = 0;
+
+            switch (alignment)
+            {
+                case Alignment.TopLeft:
+                    drawX = (int) x;
+                    drawY = (int) y;
+                    break;
+                case Alignment.TopCenter:
+                    break;
+                case Alignment.TopRight:
+                    break;
+                case Alignment.CenterLeft:
+                    break;
+                case Alignment.Center:
+                    drawX = (int) x - w / 2;
+                    drawY = (int) y - h / 2;
+                    break;
+                case Alignment.CenterRight:
+                    break;
+                case Alignment.BottomLeft:
+                    break;
+                case Alignment.BottomCenter:
+                    break;
+                case Alignment.BottomRight:
+                    break;
+            }
+            
             if (fill)
-                Raylib.DrawRectangle((int)x - w / 2, (int)y - h / 2, w, h, Color.GREEN);
+                Raylib.DrawRectangle(drawX, drawY, w, h, Color.GREEN);
             else
-                Raylib.DrawRectangleLines((int)x - w / 2, (int)y - h / 2, w, h, Color.WHITE);
+                Raylib.DrawRectangleLines(drawX, drawY, w, h, Color.WHITE);
         }
 
         public void Draw2DGrid()
