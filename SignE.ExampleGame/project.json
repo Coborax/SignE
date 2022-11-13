@@ -4,9 +4,10 @@
     "WindowHeight": 1080,
     "ProjectLevels": [
         "Resources/Levels/main_menu.level",
-        "Resources/Levels/sandbox.level"
+        "Resources/Levels/sandbox.level",
+        "Resources/Levels/quadtree.level"
     ],
-    "StartupLevel": "sandbox",
+    "StartupLevel": "quadtree",
     "DotnetProjectPath": "",
     "AssemblyPath": "bin/Debug/net6.0/SignE.ExampleGame.dll"
   }

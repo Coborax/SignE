@@ -1,0 +1,54 @@
+{
+  "$type": "SignE.Runner.Models.LevelModel, SignE.Runner",
+  "Name": "quadtree",
+  "Entities": [
+    {
+      "Id": "05f73ac5-60b2-4a6e-9843-7de3e4d2c82a",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": -1.0,
+          "X": -101.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 96,
+          "Height": 96
+        }
+      ]
+    },
+    {
+      "Id": "32bc2dc4-df1e-4093-bf37-4eee9ba1ce14",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 214.0,
+          "X": 186.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 100,
+          "Height": 100
+        }
+      ]
+    }
+  ],
+  "GameSystems": [
+    {
+      "$type": "SignE.Core.ECS.Systems.Draw2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.ExampleGame.ECS.Systems.SmoothFollowSystem, SignE.ExampleGame"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Physics.SimplePhysicsSystem, SignE.Core",
+      "UseQuadtree": true
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Camera2DSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.ExampleGame.ECS.Systems.QuadtreeTestSpawnerSystem, SignE.ExampleGame"
+    }
+  ]
+}
