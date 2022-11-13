@@ -62,6 +62,15 @@ namespace Signe.Editor
 
 		public bool Draw()
 		{
+			foreach (var drive in DriveInfo.GetDrives())
+			{
+				ImGui.SameLine();
+				if (ImGui.Button(drive.RootDirectory.FullName))
+				{
+					CurrentFolder = drive.RootDirectory.FullName;
+				}
+			}
+			
 			ImGui.Text("Current Folder: " + Path.GetFileName(RootFolder) + CurrentFolder.Replace(RootFolder, ""));
 			bool result = false;
 

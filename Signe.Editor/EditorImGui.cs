@@ -45,7 +45,7 @@ namespace Signe.Editor
             
             if (ImGui.BeginPopupModal("Choose Project Directory"))
             {
-                var picker = FilePicker.GetFolderPicker(this, "C:/");
+                var picker = FilePicker.GetFolderPicker(this, Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)));
                 if (picker.Draw())
                 {
                     _editor.ProjectDir = picker.CurrentFolder;
