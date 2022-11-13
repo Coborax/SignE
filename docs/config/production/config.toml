@@ -1,2 +1,2 @@
 canonifyURLs = true
-baseurl = https://coborax.github.io/SignE/
+baseurl = "https://coborax.github.io/SignE/"
