@@ -8,7 +8,11 @@ on:
     branches: [ "main" ]
     types:
       - published
+      - unpublished 
       - edited
+      - created
+      - prereleased
+      - released
 
 jobs:
   build:
