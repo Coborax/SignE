@@ -168,7 +168,7 @@ Below is a list of features I would like to get implemented. I might work on the
 - [x] Flexible system for being able to change out backend of the engine
 - [x] Simple ECS
 - [ ] Basic 2D Components (Sprites, Tilemaps, Circles and more...)
-- [ ] Simple 2D Physics / Collision system
+- [x] Simple 2D Physics / Collision system
 - [ ] Editor for making games (Using ImGui)
 
 See the [open issues](https://github.com/Coborax/SignE/issues) for a full list of proposed features (and known issues).
