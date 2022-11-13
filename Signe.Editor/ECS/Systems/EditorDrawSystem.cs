@@ -13,6 +13,11 @@ namespace Signe.Editor.ECS.Systems
             
         }
 
+        public override void LateUpdateSystem()
+        {
+            
+        }
+
         public override void DrawSystem()
         {
             SignE.Core.SignE.Graphics.Draw2DGrid();
@@ -28,7 +33,10 @@ namespace Signe.Editor.ECS.Systems
             if (selectedEntity.HasComponent<SpriteComponent>())
             {
                 var sprite = _editor.SelectedEntity.GetComponent<SpriteComponent>();
-                SignE.Core.SignE.Graphics.DrawRectangle(pos.X, pos.Y, (int)sprite.Sprite.Width + 2, (int)sprite.Sprite.Height + 2, false);
+                if (sprite.IsSpritesheet)
+                    SignE.Core.SignE.Graphics.DrawRectangle(pos.X, pos.Y, (int)sprite.TileW + 2, (int)sprite.TileH + 2, false);
+                else
+                    SignE.Core.SignE.Graphics.DrawRectangle(pos.X, pos.Y, (int)sprite.Sprite.Width + 2, (int)sprite.Sprite.Height + 2, false);
             }
             else if (selectedEntity.HasComponent<RectangleComponent>())
             {

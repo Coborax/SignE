@@ -58,6 +58,14 @@ namespace SignE.Core.ECS
             }
         }
 
+        public void LateUpdateSystems()
+        {
+            foreach (var gameSystem in _systems)
+            {
+                gameSystem.LateUpdateSystem();
+            }
+        }
+        
         public void DrawSystems()
         {
             foreach (var gameSystem in _systems)
@@ -70,5 +78,7 @@ namespace SignE.Core.ECS
         {
             return _systems;
         }
+
+        
     }
 }

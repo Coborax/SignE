@@ -202,8 +202,18 @@
         {
           "$type": "SignE.Core.ECS.Components.Movement2DComponent, SignE.Core",
           "Speed": 100.0,
+          "JumpSpeed": 300.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 30,
+          "Height": 60
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.PhysicsMoverComponent, SignE.Core",
           "VelX": 0.0,
-          "VelY": 0.0
+          "VelY": 0.0,
+          "Gravity": 0.5
         },
         {
           "$type": "SignE.ExampleGame.ECS.Components.PlayerComponent, SignE.ExampleGame",
@@ -297,6 +307,32 @@
           "FlipX": false,
           "FlipY": false,
           "IsSpritesheet": false
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 500,
+          "Height": 360
+        }
+      ]
+    },
+    {
+      "Id": "3982be64-3340-42db-97c1-f631e417adbc",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Camera2DComponent, SignE.Core"
+        },
+        {
+          "$type": "SignE.ExampleGame.ECS.Components.SmoothFollowComponent, SignE.ExampleGame",
+          "Target": {
+            "Id": "1c870102-4b69-426b-9377-e9e0dd6281c1"
+          },
+          "Smooth": 0.001,
+          "NewPropertyHihi": 0.0
         }
       ]
     }
@@ -313,6 +349,15 @@
     },
     {
       "$type": "SignE.ExampleGame.ECS.Systems.PlayerSystem, SignE.ExampleGame"
+    },
+    {
+      "$type": "SignE.ExampleGame.ECS.Systems.SmoothFollowSystem, SignE.ExampleGame"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Physics.SimplePhysicsSystem, SignE.Core"
+    },
+    {
+      "$type": "SignE.Core.ECS.Systems.Camera2DSystem, SignE.Core"
     }
   ]
 }

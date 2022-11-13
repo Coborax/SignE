@@ -9,6 +9,7 @@ namespace SignE.Core.ECS
         protected List<Entity> Entities;
 
         public abstract void UpdateSystem();
+        public abstract void LateUpdateSystem();
         public abstract void DrawSystem();
         public abstract void GetEntities(World world);
     }

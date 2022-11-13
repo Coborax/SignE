@@ -27,6 +27,11 @@ namespace SignE.ExampleGame.ECS.Systems
             }
         }
 
+        public override void LateUpdateSystem()
+        {
+            
+        }
+
         public override void DrawSystem()
         {
             
