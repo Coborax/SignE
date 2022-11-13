@@ -7,6 +7,10 @@ on:
     branches:
       - docs
 
+defaults:
+  run:
+    working-directory: docs
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
@@ -16,18 +20,14 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-          working-directory: docs
 
       - name: Install dependencies
-        working-directory: docs
         run: npm install
 
       - name: Check for linting errors
-        working-directory: docs
         run: npm test
 
       - name: Build production website
-        working-directory: docs
         run: npm run build
 
       - name: Deploy to GitHub Pages
