@@ -36,7 +36,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: 'editor-windows.zip'
+        file: 'Signe.Editor/bin/Debug/net6.0/editor-windows.zip'
         asset_name: editor-windows
         tag: ${{ github.ref }}
         overwrite: true
