@@ -2,6 +2,19 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace SignE.Core.Graphics
 {
+    public enum Alignment
+    {
+        TopLeft,
+        TopCenter,
+        TopRight,
+        CenterLeft,
+        Center,
+        CenterRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight
+    }
+    
     public interface IGraphics
     {
         public ICamera2D Camera2D { get; set; }
@@ -11,7 +24,7 @@ namespace SignE.Core.Graphics
         
         // Primitive Shapes
         void DrawCircle(float x, float y, float r, bool fill = true);
-        void DrawRectangle(float x, float y, int w, int h, bool fill = true);
+        void DrawRectangle(float x, float y, int w, int h, bool fill = true, Alignment alignment = Alignment.Center);
 
         void Draw2DGrid();
 

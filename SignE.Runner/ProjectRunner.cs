@@ -21,7 +21,7 @@ namespace SignE.Runner
                 Core.SignE.LevelManager.AddLevel(ProjectReader.ReadLevel<JsonLevel>(projectLevel));
             }
             Core.SignE.LevelManager.LoadLevel(project.StartupLevel);
-            SignE.Core.SignE.Graphics.Camera2D.Zoom = 3;
+            SignE.Core.SignE.Graphics.Camera2D.Zoom = 1;
         }
     }
 }

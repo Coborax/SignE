@@ -13,6 +13,12 @@
             this.X = x;
             this.Y = y;
         }
+        
+        public Position2DComponent(float x, float y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
 
         public float Y { get; set; }
         public float X { get; set; }

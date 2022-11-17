@@ -8,6 +8,8 @@ namespace SignE.Core.ECS.Systems
 {
     public class Movement2DSystem : GameSystem
     {
+        public bool Platformer { get; set; } = false;
+        
         public override void UpdateSystem()
         {
             foreach (var entity in Entities)
@@ -15,15 +17,26 @@ namespace SignE.Core.ECS.Systems
                 var mover = entity.GetComponent<PhysicsMoverComponent>();
                 var movement = entity.GetComponent<Movement2DComponent>();
 
-                mover.VelX = 0;
+                
 
+                if (!Platformer)
+                {
+                    mover.VelY = 0;
+                    if (SignE.Input.IsKeyDown(Key.W))
+                        mover.VelY = -movement.Speed;
+
+                    if (SignE.Input.IsKeyDown(Key.S))
+                        mover.VelY = movement.Speed;
+                }
+                
+                mover.VelX = 0;
                 if (SignE.Input.IsKeyDown(Key.D))
                     mover.VelX = movement.Speed;
 
                 if (SignE.Input.IsKeyDown(Key.A))
                     mover.VelX = -movement.Speed;
                 
-                if (SignE.Input.IsKeyPressed(Key.SPACE))
+                if (SignE.Input.IsKeyPressed(Key.SPACE) && Platformer)
                     mover.VelY -= movement.JumpSpeed;
             }
         }
