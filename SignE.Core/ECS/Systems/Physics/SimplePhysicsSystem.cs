@@ -12,14 +12,14 @@ namespace SignE.Core.ECS.Systems.Physics
 {
     public class SimplePhysicsSystem : GameSystem
     {
-
         public bool UseQuadtree { get; set; } = false;
+        public bool QuadtreeDebugDraw { get; set; } = false;
         
         private List<Entity> _simpleMovers;
-
         private Quadtree _quadtree = new Quadtree(0, -1920/2, -1080/2, 1920, 1080);
+        
+        // Used for debug drawing quadtree
         private bool _added = false;
-
         private List<Entity> _closeEntities = new List<Entity>();
 
         public override void UpdateSystem()
@@ -65,11 +65,13 @@ namespace SignE.Core.ECS.Systems.Physics
                     
                     // Get close entities where our updated position would be
                     var closeEntities = _quadtree.Retrieve(new Position2DComponent{X = posX.X, Y = posY.Y}, aabb);
-                    _closeEntities = closeEntities;
                     foreach (var other in closeEntities.Where(other => entity != other))
                     {
                         UpdateCollisionVelocity(posX, posY, mover, aabb, other);
                     }
+
+                    if (QuadtreeDebugDraw && entity.HasComponent<Movement2DComponent>())
+                        _closeEntities = closeEntities;
                     
                     entityPos.X += mover.VelX * SignE.Graphics.DeltaTime;
                     entityPos.Y += mover.VelY * SignE.Graphics.DeltaTime;
@@ -138,7 +140,7 @@ namespace SignE.Core.ECS.Systems.Physics
 
         public override void DrawSystem()
         {
-            if (UseQuadtree)
+            if (UseQuadtree && QuadtreeDebugDraw)
             {
                 _quadtree.DebugDraw();
                 foreach (var closeEntity in _closeEntities)

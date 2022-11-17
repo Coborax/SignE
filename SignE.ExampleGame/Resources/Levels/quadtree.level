@@ -32,6 +32,66 @@
           "Height": 10
         }
       ]
+    },
+    {
+      "Id": "3f073874-556e-470b-b888-71f5cf1e5af6",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": -960.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 10,
+          "Height": 1080
+        }
+      ]
+    },
+    {
+      "Id": "8926abb1-5f31-49ed-8dbb-042e1f16a053",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 0.0,
+          "X": 960.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 10,
+          "Height": 1080
+        }
+      ]
+    },
+    {
+      "Id": "0ef4b453-1e22-4025-8c4b-0d54060d42a0",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": -540.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 1920,
+          "Height": 10
+        }
+      ]
+    },
+    {
+      "Id": "7d52adf3-b2c7-492a-9977-12bce0611a2d",
+      "Components": [
+        {
+          "$type": "SignE.Core.ECS.Components.Position2DComponent, SignE.Core",
+          "Y": 540.0,
+          "X": 0.0
+        },
+        {
+          "$type": "SignE.Core.ECS.Components.Physics.AABBComponent, SignE.Core",
+          "Width": 1920,
+          "Height": 10
+        }
+      ]
     }
   ],
   "GameSystems": [
@@ -43,7 +103,8 @@
     },
     {
       "$type": "SignE.Core.ECS.Systems.Physics.SimplePhysicsSystem, SignE.Core",
-      "UseQuadtree": true
+      "UseQuadtree": true,
+      "QuadtreeDebugDraw": true
     },
     {
       "$type": "SignE.Core.ECS.Systems.Camera2DSystem, SignE.Core"
@@ -54,6 +115,9 @@
     },
     {
       "$type": "SignE.ExampleGame.ECS.Systems.QuadtreeTestSpawnerSystem, SignE.ExampleGame"
+    },
+    {
+      "$type": "SignE.ExampleGame.ECS.Systems.BounceSystem, SignE.ExampleGame"
     }
   ]
 }
