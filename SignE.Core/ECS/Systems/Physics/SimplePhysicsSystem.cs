@@ -19,7 +19,6 @@ namespace SignE.Core.ECS.Systems.Physics
         private Quadtree _quadtree = new Quadtree(0, -1920/2, -1080/2, 1920, 1080);
         
         // Used for debug drawing quadtree
-        private bool _added = false;
         private List<Entity> _closeEntities = new List<Entity>();
 
         public override void UpdateSystem()
@@ -31,16 +30,9 @@ namespace SignE.Core.ECS.Systems.Physics
         {
             if (UseQuadtree)
             {
-                //_quadtree.Clear();
-                if (!_added)
-                {
-                    foreach (var entity in Entities)
-                    {
-                        _quadtree.Insert(entity);
-                    }
-
-                    _added = true;
-                }
+                _quadtree.Clear();
+                foreach (var entity in Entities)
+                    _quadtree.Insert(entity);
 
                 //var closeEntities = new List<QuadtreeRect>();
                 foreach (var entity in _simpleMovers)
@@ -241,6 +233,20 @@ public class Quadtree
         }
 
         return result;
+    }
+
+    public void Clear()
+    {
+        for (var i = 0; i < _children.Length; i++)
+        {
+            if (_children[i] == null)
+                continue;
+            
+           _children[i].Clear();
+           _children[i] = null;
+        }
+
+        _objects.Clear();
     }
 
     private bool IsInBoundingBox(Position2DComponent position, AABBComponent boundingBox)
