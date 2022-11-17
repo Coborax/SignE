@@ -82,7 +82,10 @@ namespace Signe.Editor
             _coreTypes = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => typeof(IComponent).IsAssignableFrom(p)).ToList();
+
+            _coreTypes.RemoveAll(coreType => _gameTypes.Any(gameType => coreType.Name == gameType.Name));
         }
+            
 
         public void SaveProject()
         {
