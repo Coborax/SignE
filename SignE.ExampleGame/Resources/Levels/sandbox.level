@@ -345,7 +345,8 @@
       "$type": "SignE.Core.ECS.Systems.Animator2DSystem, SignE.Core"
     },
     {
-      "$type": "SignE.Core.ECS.Systems.Movement2DSystem, SignE.Core"
+      "$type": "SignE.Core.ECS.Systems.Movement2DSystem, SignE.Core",
+      "Platformer": false
     },
     {
       "$type": "SignE.ExampleGame.ECS.Systems.PlayerSystem, SignE.ExampleGame"
@@ -354,7 +355,9 @@
       "$type": "SignE.ExampleGame.ECS.Systems.SmoothFollowSystem, SignE.ExampleGame"
     },
     {
-      "$type": "SignE.Core.ECS.Systems.Physics.SimplePhysicsSystem, SignE.Core"
+      "$type": "SignE.Core.ECS.Systems.Physics.SimplePhysicsSystem, SignE.Core",
+      "UseQuadtree": false,
+      "QuadtreeDebugDraw": false
     },
     {
       "$type": "SignE.Core.ECS.Systems.Camera2DSystem, SignE.Core"

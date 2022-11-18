@@ -104,7 +104,7 @@
     {
       "$type": "SignE.Core.ECS.Systems.Physics.SimplePhysicsSystem, SignE.Core",
       "UseQuadtree": true,
-      "QuadtreeDebugDraw": true
+      "QuadtreeDebugDraw": false
     },
     {
       "$type": "SignE.Core.ECS.Systems.Camera2DSystem, SignE.Core"
