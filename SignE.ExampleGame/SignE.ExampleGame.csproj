@@ -18,6 +18,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Content Include="runtimes\**\*">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
       <None Update="project.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
