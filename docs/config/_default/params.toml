@@ -4,16 +4,16 @@
 title = "SignE Game Engine"
 titleSeparator = "-"
 titleAddition = "2D Game Engine"
-description = "SignE is a 2D game engine create by Mikkel Mouridsen as a hobby project."
+description = "SignE Game Engine is a 2D Game Engine created by Mikkel Mouridsen as a hobby project."
 
 ## Documentation
 # docsVersion = "0.3"
 
 ## Open Graph
-images = ["doks.png"]
+images = ["logo-no-background.png"]
 ogLocale = "en_US"
-domainTLD = "doks.netlify.app"
-titleHome = "Doks Theme"
+domainTLD = "doks.signe.app"
+titleHome = "SignE Game Engine"
 
 ## Twitter Cards
 twitterSite = "@getdoks"
@@ -22,21 +22,21 @@ twitterCreator = "@henkverlinde"
 ## JSON-LD
 # schemaType = "Person"
 schemaType = "Organization"
-schemaName = "Doks"
-schemaAuthor = "Henk Verlinde"
-schemaAuthorTwitter = "https://twitter.com/henkverlinde"
-schemaAuthorLinkedIn = "https://www.linkedin.com/in/henkverlinde/"
-schemaAuthorGitHub = "https://github.com/h-enk"
+schemaName = "SignE"
+schemaAuthor = "Mikkel Mouridsen"
+schemaAuthorTwitter = ""
+schemaAuthorLinkedIn = ""
+schemaAuthorGitHub = "https://github.com/Coborax/SignE"
 schemaLocale = "en-US"
 schemaLogo = "logo-doks.png"
 schemaLogoWidth = 512
 schemaLogoHeight = 512
-schemaImage = "doks.png"
+schemaImage = "logo-no-background.png"
 schemaImageWidth = 1280
 schemaImageHeight = 640
-schemaTwitter = "https://twitter.com/getdoks"
+schemaTwitter = ""
 schemaLinkedIn = ""
-schemaGitHub = "https://github.com/h-enk/doks"
+schemaGitHub = "https://github.com/Coborax/SignE/doks"
 schemaSection = "blog"
 
 ## Sitelinks Search Box
@@ -45,7 +45,7 @@ siteLinksSearchBox = false
 ## Chrome Browser
 themeColor = "#fff"
 
-# Images
+# Images - Temporarily left in place for backward compatibility
 quality = 85
 bgColor = "#fff"
 landscapePhotoWidths = [900, 800, 700, 600, 500]
@@ -65,10 +65,10 @@ defaultImage = "default-image.png" # put in `./assets/images/`
 fillImage = "1270x740 Center" # normalize image size
 
 # Footer
-footer = "Powered by <a class=\"text-muted\" href=\"https://www.netlify.com/\">Netlify</a>, <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>, and <a class=\"text-muted\" href=\"https://getdoks.org/\">Doks</a>"
+footer = "Powered by <a class=\"text-muted\" href=\"https://pages.github.com/\">Github Pages</a>, <a class=\"text-muted\" href=\"https://gohugo.io/\">Hugo</a>, and <a class=\"text-muted\" href=\"https://getdoks.org/\">Doks</a>"
 
 # Feed
-copyRight = "Copyright (c) 2020-2021 Henk Verlinde"
+copyRight = "Copyright (c) 2022 Mikkel Mouridsen"
 
 # Alert
 alert = false
@@ -80,10 +80,10 @@ alertText = "Introducing the Doks child theme, several DX + UX updates, and more
 # repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
 repoHost = "GitHub"
 #repoHost = "Gitea"
-docsRepo = "https://github.com/h-enk/doks"
-docsRepoBranch = "master"
-docsRepoSubPath = ""
-editPage = false
+docsRepo = "https://github.com/Coborax/SignE"
+docsRepoBranch = "docs"
+docsRepoSubPath = "docs/"
+editPage = true
 lastMod = false
 
 [sections]

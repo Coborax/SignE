@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://getdoks.org/">
-    <img alt="Doks" src="https://doks.netlify.app/doks.svg" width="60">
+    <img alt="Doks" src="https://doks.netlify.app/logo-doks.svg" width="60">
   </a>
 </p>
 
@@ -9,7 +9,7 @@
 </h1>
 
 <h3 align="center">
-  Modern Documentation Theme
+  Doks Child Theme
 </h3>
 
 <p align="center">
@@ -17,20 +17,17 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/h-enk/doks/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/h-enk/doks?style=flat-square" alt="GitHub">
+  <a href="https://github.com/h-enk/doks-child-theme/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/h-enk/doks-child-theme?style=flat-square" alt="GitHub">
   </a>
-  <a href="https://github.com/h-enk/doks/releases">
-    <img src="https://img.shields.io/github/v/release/h-enk/doks?include_prereleases&style=flat-square"alt="GitHub release (latest SemVer including pre-releases)">
+  <a href="https://github.com/h-enk/doks-child-theme/releases">
+    <img src="https://img.shields.io/github/v/release/h-enk/doks-child-theme?include_prereleases&style=flat-square"alt="GitHub release (latest SemVer including pre-releases)">
   </a>
-  <a href="https://www.npmjs.com/package/@hyas/doks">
-    <img src="https://img.shields.io/npm/v/@hyas/doks?style=flat-square" alt="npm (scoped)">
+  <a href="https://github.com/h-enk/doks-child-theme/actions/workflows/codeql-analysis.yml">
+    <img src="https://img.shields.io/github/workflow/status/h-enk/doks-child-theme/CodeQL/master?style=flat-square" alt="GitHub Workflow Status (branch)">
   </a>
-  <a href="https://github.com/h-enk/doks/actions?query=workflow%3A%22Hyas+CI%22">
-    <img src="https://img.shields.io/github/workflow/status/h-enk/doks/Hyas%20CI/master?style=flat-square" alt="GitHub Workflow Status (branch)">
-  </a>
-  <a href="https://app.netlify.com/sites/doks/deploys">
-    <img src="https://img.shields.io/netlify/8a1009d5-88ac-413e-96ef-3f928674a083?style=flat-square" alt="Netlify">
+  <a href="https://app.netlify.com/sites/hyas-child-theme/deploys">
+    <img src="https://img.shields.io/netlify/75395a37-8537-4410-a8c3-d56bf27ec963?style=flat-square" alt="Netlify">
   </a>
 </p>
 
@@ -38,7 +35,7 @@
 
 ## Demo
 
-- [doks.netlify.app](https://doks.netlify.app/)
+- [doks-child-theme.netlify.app](https://doks-child-theme.netlify.app/)
 
 ## Why Doks?
 
